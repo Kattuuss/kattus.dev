@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+@theme {
+    --font-jetbrains: 'JetBrains Mono';
+    --font-oswald: 'Oswald';
+    --font-impact: 'Impact';
+}

@@ -1,0 +1,13 @@
+---
+import ShellInterface from "./ShellInterface.astro"
+---
+
+<ShellInterface>
+    <!-- Content container -->
+    <div class="bg-purple-800 w-full h-full rounded-2xl p-2">
+        <!-- Content -->
+        <div class="bg-[#191b1d] w-full h-full rounded-2xl border-2 p-2 border-purple-400 overflow-y-auto flex justify-center">
+            <slot />
+        </div>
+    </div>
+</ShellInterface>

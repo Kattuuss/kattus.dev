@@ -1,0 +1,29 @@
+---
+import ShellNavbar from "../ui/ShellNavbar.astro"
+import ShellOptions from "../ui/ShellOptions.astro";
+import ShellPageInfo from "../ui/ShellPageInfo.astro";
+---
+
+<!-- Container -->
+<div class="flex flex-row h-screen bg-[#0a0f0d] p-3 gap-3">
+  <!-- Sidebar -->
+  <div class="bg-[#0a0f0d] w-10 flex flex-col items-center gap-3">
+    <!-- Logo -->
+    <p class="border-white rounded-xl text-white uppercase font-bold w-8 h-8">[K].</p>
+
+    <!-- Spaced sidebar content -->
+    <div class="flex flex-col flex-1 justify-between items-center w-full pb-4">
+      <!-- Nav -->
+      <ShellNavbar />
+
+      <!-- Page name -->
+      <ShellPageInfo pageTitle="Page name#section" navIcon="material-symbols:person"/>
+
+      <!-- Options -->
+      <ShellOptions />
+    </div>
+  </div>
+
+  <slot />
+  
+</div>
