@@ -1,0 +1,16 @@
+---
+import ShellLayout from "../layouts/ShellLayout.astro";
+
+export const pageTitle = "Contact";
+---
+
+<ShellLayout pageTitle={pageTitle}>
+    <div class="flex flex-col">
+        <h2 class="font-bold text-white text-4xl">Send me a message!</h2>
+        <form action="" class="text-white">
+            <label for="first-name">Name:</label>
+            <input type="text" placeholder="Jhon">
+            <input type="submit" value="Contact!" class="bg-indigo-500 rounded-lg p-1">
+        </form>
+    </div>
+</ShellLayout>

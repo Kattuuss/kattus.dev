@@ -1,0 +1,35 @@
+---
+interface Props {
+    parentDir: string;
+    childDirs: string[];
+}
+
+const { parentDir, childDirs = [] } = Astro.props;
+---
+
+<!-- Tree structure -->
+<div class="flex flex-col w-full mb-8 text-sm text-gray-400 pl-2">
+    <!-- Parent directory -->
+    <div class="font-bold text-indigo-400 flex items-center gap-2 h-6">
+        <span class="whitespace-pre text-gray-500">└──</span>
+        <span>{parentDir}/</span>
+    </div>        
+
+    <!-- Child directories -->
+    {childDirs.map((dir, index) => {
+        // Checks if the actual entry is the last to assing a different symbol
+        const isLastTech = index === childDirs.length - 1;
+        const symbol = isLastTech ? "└──" : "├──";
+
+        return (
+            // Creates a button for each technology with its logo and name
+            <div class="flex items-center gap-2 h-6 pl-6">
+                <span class="text-gray-600 font-bold mr-1.5 whitespace-pre">{symbol}</span>
+                <span class="text-indigo-400 font-bold">./{dir}</span>
+            </div>
+        );
+    })}
+
+    <!-- Output from tree command -->
+    <p>1 directory, {childDirs.length} files</p>
+</div>

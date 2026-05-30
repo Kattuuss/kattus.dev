@@ -1,9 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import ShellLayout from '../layouts/ShellLayout.astro';
 
 const pageTitle = "Home";
 ---
 
-<Layout pageTitle={pageTitle}>
-	<h1>Hi!</h1>
-</Layout>
+<ShellLayout pageTitle={pageTitle}>
+	<div class="flex flex-col justify-center items-center gap-y-3">
+		<h1 class="text-white text-xl italic font-bold mr-12 font-jetbrains">Hi everyone ...</h1>
+		<h1 class="text-white text-xl italic font-bold ml-12 font-jetbrains">... <span class="underline">Kattus</span> here!</h1>
+	</div>
+</ShellLayout>
