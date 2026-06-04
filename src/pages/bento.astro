@@ -1,0 +1,22 @@
+---
+import BentoLayout from "../layouts/BentoLayout.astro";
+import BentoAbout from "../components/layout-parts/bento/bentoAbout.astro";
+import BentoWorks from "../components/layout-parts/bento/bentoWorks.astro";
+import BentoSkills from "../components/layout-parts/bento/bentoSkills.astro";
+import BentoContact from "../components/layout-parts/bento/bentoContact.astro";
+import BentoExperience from "../components/layout-parts/bento/bentoExperience.astro";
+---
+
+<BentoLayout>
+    <div class="grid grid-rows-[auto_1fr_auto] gap-2 h-full w-full">
+        <BentoAbout />
+        <!-- <BentoExperience /> -->
+        
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <BentoWorks />
+            <BentoSkills />
+        </div>
+
+        <BentoContact />
+    </div>
+</BentoLayout>
