@@ -2,14 +2,24 @@
 
 ---
 
-<div class="flex flex-col rounded-2xl justify-around items-center w-full gap-2">
-    
-    <div class="border-2 border-white rounded-2xl bg-white overflow-hidden w-full flex justify-center items-center">
-        <img src="web-krawler.svg" alt="web crawler image" class="w-full h-full object-contain p-4">
+<div class="flex flex-col justify-around items-center gap-2 w-full rounded-2xl  ">
+    <div class="relative group flex justify-center items-center border-2 border-white rounded-2xl bg-white overflow-hidden w-full">
+        <img src="web-krawler.svg" alt="web crawler image">
+        
+        <div class="absolute top-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 4.5 15 15m0 0V8.25m0 11.25H8.25" />
+            </svg>
+        </div>
     </div>
 
-    <div class="border-2 border-white rounded-2xl bg-white overflow-hidden w-full flex justify-center items-center">
-        <img src="muume.svg" alt="muume image" class="w-full h-full object-contain p-4">
-    </div>
+    <div class="group relative flex justify-center items-center border-2 w-full border-white rounded-2xl bg-white overflow-hidden ">
+        <img src="muume.svg" alt="muume image">
 
+        <div class="absolute top-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+        </div>
+    </div>
 </div>
