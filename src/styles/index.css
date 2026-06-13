@@ -1,3 +1,7 @@
+*:focus {
+    outline: 2px solid darkorchid;
+}
+
 /* Corner decoration */
 .ray-light {
     background-color:gold;
@@ -48,11 +52,11 @@ svg[data-astro-cid-socials] {
 
 .key[data-astro-cid-socials].call-to-action {
     width: 160px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .05rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .call-to-action-content[data-astro-cid-socials]:after {
@@ -94,7 +98,9 @@ svg[data-astro-cid-socials] {
 .key[data-astro-cid-socials]:hover {
     cursor: pointer;
     transform: translate(.3rem) translateY(.3rem);
-    box-shadow: .15rem .15rem 0 0 var(--background-3), .3rem .3rem 0 0 var(--background-3), .45rem .45rem 0 0 var(--background-3), .5rem .5rem 0 0 var(--background-3)
+    box-shadow: .15rem .15rem 0 0 var(--background-3), .3rem .3rem 0 0 var(--background-3), .45rem .45rem 0 0 var(--background-3), .5rem .5rem 0 0 var(--background-3);
+    background-image:radial-gradient(circle farthest-corner at top left,gold,darkorchid 55%);
+    box-shadow: .3rem .3rem;
 }
 
 .key[data-astro-cid-socials]:active,
@@ -161,3 +167,82 @@ svg[data-astro-cid-socials] {
     z-index: 2
 }
 
+/* Discover more */
+.custom-link:hover .discover-more, .custom-link:focus .discover-more {
+    background: linear-gradient(90deg, gold 5%, darkorchid 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-link:hover, .custom-link:focus {
+    background: linear-gradient(90deg, gold 5%, darkorchid 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-link:hover svg, .custom-link:focus svg{
+    color: darkorchid;
+}
+
+.discover-more:after {
+    background: linear-gradient(90deg, gold 5%, darkorchid 95%);
+    transition: .3s ease-out
+}
+
+.discover-more:hover .discover-more:after .discover-more:active .discover-more.isDown {
+    width: 70%
+}
+
+.discover-more:active,
+.discover-more.isDown {
+    background: linear-gradient(90deg, gold 5%, darkorchid 95%);
+    transition: .3s ease-out
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% {
+    transform:translate(0)
+  }
+  to {
+    transform:translate(calc(-100% - var(--gap)))
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) infinite linear
+}
+
+/* Custom button */
+.custom-button:hover, .custom-button:focus {
+    background: linear-gradient(90deg, gold 5%, darkorchid 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Custom card */
+.custom-card:hover, .custom-card:focus {
+    background: linear-gradient(90deg, gold 5%, darkorchid 20%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-card:hover svg, .custom-card:focus svg {
+    color: gold;
+}
+
+/* Custom blog */
+.custom-blog:hover, .custom-blog:focus {
+    background: linear-gradient(90deg, gold 5%, darkorchid 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-blog:hover svg, .custom-blog:focus svg{
+    color: gold;
+}
