@@ -15,6 +15,23 @@ const pageTitle = "Alex | Portfolio"
 		<title>{pageTitle}</title>
 	</head>
 	<body class="flex min-h-dvh flex-col items-center bg-zinc-950 text-white">
+		<div class="astro-loading-indicator" aria-hidden="true"></div>
 		<slot />
     </body>
 </html>
+
+<script>
+	const progressBar = document.querySelector('.astro-loading-indicator') as HTMLElement;
+
+	window.addEventListener('scroll', () => {
+		if (progressBar) {
+		// Calculates scroll percentage
+		const totalScroll = document.documentElement.scrollTop;
+		const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		const scrollPercentage = totalScroll / windowHeight;
+
+		// Applies the value to the CSS variable
+		progressBar.style.setProperty('--progress', scrollPercentage.toString());
+		}
+	});
+</script>

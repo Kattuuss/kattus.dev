@@ -1,0 +1,17 @@
+---
+import '../styles/global.css';
+import '../styles/index.css';
+
+import Layout from "../layouts/Layout.astro";
+import SecondaryLights from '../components/SecondaryLights.astro';
+import BlogSection from '../components/Blog/BlogSection.astro';
+import FooterSection from "../components/Footer/FooterSection.astro";
+---
+
+<Layout>
+    <SecondaryLights />
+    <main class="w-full max-w-[1200px] px-12 pb-16 tracking-wide transition-all max-sm:px-4 mx-auto">
+        <BlogSection />
+    </main>
+    <FooterSection />
+</Layout>

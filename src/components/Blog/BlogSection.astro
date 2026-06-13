@@ -1,0 +1,82 @@
+---
+import MoreBtn from "../MoreBtn.astro";
+import ReturnBtn from "../ReturnBtn.astro";
+import Post from "./Post.astro";
+
+const currentPath = Astro.url.pathname;
+---
+
+<!-- Blog Section -->
+<section id="blog" class="mt-40 scroll-mt-16">
+    <div class="items-center justify-between gap-4 lg:flex">
+        <!-- Section Tag -->
+        <div class="space-y-6 sm:space-y-8">
+            <div class="flex w-fit items-center gap-2 rounded-full bg-purple-950/55 px-4 py-2 text-purple-300">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="currentColor" d="m227.32 73.37l-44.69-44.68a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h168a8 8 0 0 0 0-16H115.32l112-112a16 16 0 0 0 0-22.63M192 108.69L147.32 64l24-24L216 84.69Z"></path>
+                </svg>
+                <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">Blog</h2>
+            </div>
+
+            <!-- Section Title CHANGE!!! -->
+            <h3 class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
+                Learning, Building, and
+                <br class="max-sm:hidden">
+                Documenting
+            </h3>
+
+            <!-- Section Description CHANGE!!! -->
+            <p class="text-zinc-400 max-md:text-sm">
+                Insights and experiences from my journey as a developer—exploring ideas,
+                <br class="max-sm:hidden">
+                overcoming challenges, and sharing lessons learned along the way.
+            </p>
+        </div>
+
+        { currentPath === "/blog" || currentPath === "/blog/" ? <ReturnBtn msg="Return home" url="/" /> : <MoreBtn msg="View all articles" url="/blog" /> }
+    </div>
+
+    <!-- Article List CHANGE!!! -->
+    <div class="relative mt-12 w-fit">
+        <!-- New Post Tag -->
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 z-10 flex items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border border-zinc-600/75 bg-[#0b0e0f] enter-animation">
+            <div class="relative size-4">
+                <div class="absolute size-full animate-ping rounded-full bg-purple-300 opacity-65"></div>
+                <div class="drop-shadow-green size-full rounded-full bg-purple-400"></div>
+            </div>
+            <h3 class="text-lg text-slate-200 max-xs:text-xs">New</h3>
+        </div>
+
+        <!-- Post 1 -->
+        <Post 
+            url="/blog/customize-shadcn-tooltip-arrows"
+            img="public/a_car_surrounded_by_bluish_light.png"
+            alt="..."
+            datePublished="December 15, 2024"
+            readTime="5 min"
+            description="A workaround for displaying a custom SVG arrow in shadcn’s tooltip."
+            technologies={["react", "css"]}
+        />
+
+        <!-- Post 2 -->
+        <Post 
+            url="/blog/zod-computed-default-value"
+            img="public/artemis_two_mission.png"
+            alt="..."
+            datePublished="December 12, 2024"
+            readTime="3 min"
+            description="Leverage Zod's powerful features to set dynamic default values and enhance data validation with flexibility and ease."
+            technologies={["zod", "typescript"]}
+        />
+        
+        <!-- Post 3 -->
+        <Post 
+            url="/blog/zoom-to-mouse-functionality-in-obs"
+            img="public/beige_japanese_drift.png"
+            alt="..."
+            datePublished="January 3, 2025"
+            readTime="4 min"
+            description="Enhance your recordings and presentations with dynamic zoom effects."
+            technologies={["other"]}
+        />
+</section>
