@@ -1,0 +1,16 @@
+---
+import Divider from "./Divider.astro";
+
+const { redirectedPage, url, label, viewbox, icon } = Astro.props;
+---
+
+<li style=`view-transition-name: ${redirectedPage};`>
+    <a class="group flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 focus:scale-150" href=`${url}` aria-label=`${label}`>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox=`${viewbox}` class="size-5">
+            <Fragment set:html={icon} />
+        </svg>
+        <!-- <div class="group-hover:absolute group-hover:bottom-[3px] group-hover:size-[3.5px] group-hover:rounded-full group-hover:bg-purple-400"></div> -->
+    </a>
+</li>
+
+<Divider />
