@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Prose from '../../components/Global/Prose.astro';
+import FooterSection from '../../components/Footer/FooterSection.astro';
+import NavIsland from '../../components/NavIsland/NavIsland.astro';
+
+// 1. Import utilities from: 
+// 'astro:content' to get collections and render content
+// 'astro:assets' for Astro to optimize images
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+// 2. Gets each selected file from the collection asynchronously
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+
+    return posts.map(post => ({
+        params: { slug: post.id },
+        props: { post }
+    }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const { tags } = post.data;
+---
+
+<Layout>
+    <main class="w-full max-w-[1200px] px-12 pb-16 tracking-wide transition-all max-sm:px-4">
+        <!-- Hero aricle section -->
+        <section class="mt-16 sm:mt-24 sm:font-light lg:mt-32">
+            <div class="space-x-1 text-sm text-zinc-400 sm:text-lg">
+                <span>{post.data.pubDate}</span>
+                <span>•</span>
+                <span>{post.data.readTime} read</span>
+            </div>
+            <h1 class="font-heading mt-4 text-[clamp(1.8rem,5vw,2.5rem)] font-bold leading-tight sm:mt-6 md:leading-[1.1]">{post.data.title}</h1>
+            <h3 class="mt-4 text-zinc-400 max-sm:text-sm">{post.data.description}</h3>
+            <ul class="mt-8 flex flex-wrap gap-2">
+                {tags.map(tag => (
+                        <li class="border border-zinc-500 rounded bg-zinc-900 group-hover:border-purple-400 active:border-purple-400 px-2 py-1 font-mono text-xs tracking-tight text-zinc-200 font-bold">
+                            {tag}
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+        
+        <!-- Hero image -->
+        <div class="h-fit w-fit bg-cover bg-center ambient-mode rounded-lg mt-8 sm:mt-12">
+            <Image src={post.data.heroImage} alt={post.data.title} class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[1.5] w-full xs:aspect-[2]"/>
+        </div>
+
+        <!-- Article section -->
+        <section class="mt-8 flex w-full gap-16 sm:mt-16">
+            <Prose >
+                <Content />
+            </Prose>
+            
+            <!-- Article headers navigation bar -->
+            <aside class="w-60 shrink-0 space-y-8 max-lg:hidden">
+                <div class="font-secondary sticky top-32">
+                    <p class="font-display text-lg font-semibold text-zinc-200">On this page</p>
+                    <ul class="mt-2 space-y-1.5 text-[0.9rem] text-zinc-500 scrollbar-color max-h-[480px] overflow-y-scroll">
+                        {headings
+                            .filter(h => h.depth <= 4)
+                            .map(heading => (
+                                <li>
+                                    <a class="hover:text-zinc-400 transition-colors" href={`#${heading.slug}`}>
+                                        {heading.text}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </aside>
+        </section>
+        
+        <!-- Explore more button -->
+        <section class="mt-16">
+            <a class="custom-link text-primary-gradient underline-offset-2 hover:underline link-hover-animation hover:link-hovered-animation text-zinc-200! no-underline!" href="/blog">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="mr-2 inline-block size-4 -scale-x-100">
+                    <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"></path>
+                </svg>
+                Explore more posts
+            </a>
+        </section>
+    </main>
+    <FooterSection />
+    <NavIsland />
+</Layout>

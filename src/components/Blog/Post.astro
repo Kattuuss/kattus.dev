@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
+  title: String;
   url: string;
   img: ImageMetadata;
   alt: string;
@@ -12,12 +13,12 @@ interface Props {
   technologies: [string, ...string[]]; 
 }
 
-const { url, img, alt, datePublished, readTime, description, technologies } = Astro.props;
+const { title, url, img, alt, datePublished, readTime, description, technologies } = Astro.props;
 ---
 
 <a class="blog relative group flex gap-8 py-10 max-md:flex-col" href={url}>
-    <div class="divider absolute top-0 left-0 w-full h-[1px] bg-zinc-900 transition-colors duration-300 group-hover:bg-linear-to-r group-hover:from-yellow-400 group-hover:to-purple-500"></div>
-    
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-zinc-900 transition-colors duration-300 group-hover:bg-linear-to-r group-hover:from-yellow-400 group-hover:to-purple-500"></div>
+
     <div class="h-fit w-fit bg-cover bg-center rounded-lg overflow-clip md:max-w-[216px]">
         <Image src={img} alt={alt} loading="lazy" decoding="async" width="2787" height="4181" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[2] transition-all duration-800 group-hover:scale-105 md:aspect-[1.5]" />
     </div>
@@ -28,7 +29,7 @@ const { url, img, alt, datePublished, readTime, description, technologies } = As
                 <span>•</span>
                 <span>{readTime} read</span>
             </div>
-            <p class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-yellow-400 group-hover:to-purple-500 font-display mt-3 text-lg font-semibold leading-[1.4]">Hacky Way to Customize Shadcn’s Tooltip Arrows</p>
+            <p class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-yellow-400 group-hover:to-purple-500 font-display mt-3 text-lg font-semibold leading-[1.4]">{title}</p>
             <p class="mt-2 text-zinc-400 max-md:text-sm">{description}</p>
         </div>
         <div class="mt-4 flex justify-between gap-6 max-xs:flex-col-reverse xs:mt-6 xs:items-center">

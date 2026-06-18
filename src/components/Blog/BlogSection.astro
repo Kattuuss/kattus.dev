@@ -45,7 +45,7 @@ import driftingCarImg from '../../assets/beige_japanese_drift.png';
     </div>
 
     <!-- Article List CHANGE!!! -->
-    <div class="relative mt-12 w-fit">
+    <div class="relative mt-12 w-full">
         <!-- New Post Tag -->
         <div class="absolute -top-5 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 z-10 flex items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border border-zinc-600/75 bg-[#0b0e0f] enter-animation pointer-events-none">
             <div class="relative size-4">
@@ -56,35 +56,38 @@ import driftingCarImg from '../../assets/beige_japanese_drift.png';
         </div>
 
         <!-- Post 1 -->
-        <Post 
-            url="/blog/customize-shadcn-tooltip-arrows"
+        <Post
+            title="Learning Java" 
+            url="/blog/learning-java"
             img={blueCarImg}
-            alt="..."
-            datePublished="December 15, 2024"
-            readTime="5 min"
-            description="A workaround for displaying a custom SVG arrow in shadcn’s tooltip."
-            technologies={["react", "css"]}
+            alt="post about learning java"
+            datePublished="July 18, 2026"
+            readTime="10 min"
+            description="A brief post on how I learnt Java."
+            technologies={["java", "learning", "guide", "roadmap"]}
         />
 
         <!-- Post 2 -->
         <Post 
-            url="/blog/zod-computed-default-value"
+            title="Front Maxxing"
+            url="/blog/front-maxxing"
             img={artemisMissionImg}
-            alt="..."
-            datePublished="December 12, 2024"
-            readTime="3 min"
-            description="Leverage Zod's powerful features to set dynamic default values and enhance data validation with flexibility and ease."
-            technologies={["zod", "typescript"]}
+            alt="post about learning front-end"
+            datePublished="March 30, 2026"
+            readTime="6 min"
+            description="My first step inside the front-end world."
+            technologies={["html", "css", "tailwind", "astro"]}
         />
         
         <!-- Post 3 -->
         <Post 
-            url="/blog/zoom-to-mouse-functionality-in-obs"
+            title="Kattus.dev" 
+            url="/blog/kattus-dev"
             img={driftingCarImg}
-            alt="..."
-            datePublished="January 3, 2025"
-            readTime="4 min"
-            description="Enhance your recordings and presentations with dynamic zoom effects."
-            technologies={["other"]}
+            alt="post about how I made my own portflio"
+            datePublished="October 5, 2025"
+            readTime="12 min"
+            description="How I did and what I learned while doing my own porfolio?"
+            technologies={["astro", "tailwind", "learning", "zod", "typescript"]}
         />
 </section>
