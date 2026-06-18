@@ -4,6 +4,9 @@ import ReturnBtn from "../Global/ReturnBtn.astro";
 import ProjectCard from "./ProjectCard.astro";
 
 const currentPath = Astro.url.pathname;
+
+import webKrawlerImg from '../../assets/web-krawler.svg';
+import muuMeImg from '../../assets/muume.svg';
 ---
 
 <!-- Projects Section -->
@@ -43,7 +46,7 @@ const currentPath = Astro.url.pathname;
         <!-- web-krawler -->
         <ProjectCard 
             url="projects/web-krawler"
-            img="src/assets/web-krawler.svg"
+            img={webKrawlerImg}
             alt="Web-Krawler: A Simple Web Crawler for extracting hyperlinks."
             year="2026"
             name="web-krawler"
@@ -53,7 +56,7 @@ const currentPath = Astro.url.pathname;
         <!-- muume -->
         <ProjectCard 
             url="projects/muume"
-            img="src/assets/muume.svg"
+            img={muuMeImg}
             alt="MuuMe: A Web Application to privately chat with your people."
             year="2026"
             name="muume"

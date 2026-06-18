@@ -13,6 +13,8 @@ const technologies = [
 ];
 
 import StackIcon from './StackIcon.astro';
+import profilePictureImg from '../../assets/random-pfp.png';
+import { Image } from 'astro:assets';
 ---
 
 <!-- Bento Section -->
@@ -119,8 +121,8 @@ import StackIcon from './StackIcon.astro';
                     </svg>
                     <h3 class="text-sm text-zinc-200 select-none">Hi!</h3>
                 </div>
-                <div class="blur-load h-fit w-fit bg-cover bg-top rounded-lg overflow-clip image-loaded">
-                    <img src="src/assets/random-pfp.png" alt="My profile picture" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[1.5]" loading="lazy" decoding="async" width="1920" height="1440">
+                <div class="h-fit w-fit bg-cover bg-top rounded-lg overflow-clip">
+                    <Image src={profilePictureImg} alt="My profile picture" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[1.5]" loading="lazy" decoding="async" width="1920" height="1440" />
                 </div> 
             </div>
         </div>

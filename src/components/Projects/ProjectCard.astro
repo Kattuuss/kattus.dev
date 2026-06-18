@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 const { url, img, alt, year, name, description } = Astro.props;
 ---
 
 <a class="custom-card group space-y-6" href={url}>
-    <div class="blur-load h-fit w-fit bg-cover bg-top rounded-lg overflow-clip image-loaded">
-        <img src={img} alt={alt} loading="lazy" decoding="async" width="2787" height="4181" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[2] transition-all duration-800 group-hover:scale-105 md:aspect-[1.5]">
+    <div class="h-fit w-fit bg-cover bg-top rounded-lg overflow-clip">
+        <Image src={img} alt={alt} loading="lazy" decoding="async" width="2787" height="4181" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[2] transition-all duration-800 group-hover:scale-105 md:aspect-[1.5]" />
     </div> 
     <div class="flex flex-col gap-4" >
         <p>{year}</p>

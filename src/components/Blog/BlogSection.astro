@@ -4,6 +4,10 @@ import ReturnBtn from "../Global/ReturnBtn.astro";
 import Post from "./Post.astro";
 
 const currentPath = Astro.url.pathname;
+
+import blueCarImg from '../../assets/a_car_surrounded_by_bluish_light.png';
+import artemisMissionImg from '../../assets/artemis_two_mission.png';
+import driftingCarImg from '../../assets/beige_japanese_drift.png';
 ---
 
 <!-- Blog Section -->
@@ -54,7 +58,7 @@ const currentPath = Astro.url.pathname;
         <!-- Post 1 -->
         <Post 
             url="/blog/customize-shadcn-tooltip-arrows"
-            img="src/assets/a_car_surrounded_by_bluish_light.png"
+            img={blueCarImg}
             alt="..."
             datePublished="December 15, 2024"
             readTime="5 min"
@@ -65,7 +69,7 @@ const currentPath = Astro.url.pathname;
         <!-- Post 2 -->
         <Post 
             url="/blog/zod-computed-default-value"
-            img="src/assets/artemis_two_mission.png"
+            img={artemisMissionImg}
             alt="..."
             datePublished="December 12, 2024"
             readTime="3 min"
@@ -76,7 +80,7 @@ const currentPath = Astro.url.pathname;
         <!-- Post 3 -->
         <Post 
             url="/blog/zoom-to-mouse-functionality-in-obs"
-            img="src/assets/beige_japanese_drift.png"
+            img={driftingCarImg}
             alt="..."
             datePublished="January 3, 2025"
             readTime="4 min"
