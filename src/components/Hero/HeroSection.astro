@@ -24,27 +24,27 @@ const t = useTranslations(lang);
         {t('hero.description')}
     </h2>
 
-    <div class="flex items-start text-center max-sm:flex-col enter-animation" data-astro-cid-socials>
+    <div class="flex flex-col items-start text-center max-sm:flex-col enter-animation" data-astro-cid-socials>
         <div class="board" data-astro-cid-socials>
             <HeroSocialBtn name="Github" url="https://github.com/Kattuuss">
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-socials="true">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-socials="true" target="_blank">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
                         <path d="M10 20.568c-3.429 1.157-6.286 0-8-3.568"></path>
                         <path d="M10 22v-3.242c0-.598.184-1.118.48-1.588c.204-.322.064-.78-.303-.88C7.134 15.452 5 14.107 5 9.645c0-1.16.38-2.25 1.048-3.2c.166-.236.25-.354.27-.46c.02-.108-.015-.247-.085-.527c-.283-1.136-.264-2.343.16-3.43c0 0 .877-.287 2.874.96c.456.285.684.428.885.46s.469-.035 1.005-.169A9.5 9.5 0 0 1 13.5 3a9.6 9.6 0 0 1 2.343.28c.536.134.805.2 1.006.169c.2-.032.428-.175.884-.46c1.997-1.247 2.874-.96 2.874-.96c.424 1.087.443 2.294.16 3.43c-.07.28-.104.42-.084.526s.103.225.269.461c.668.95 1.048 2.04 1.048 3.2c0 4.462-2.134 5.807-5.177 6.643c-.367.101-.507.559-.303.88c.296.47.48.99.48 1.589V22"></path>
                     </g>
                 </svg>
             </HeroSocialBtn>
-            <HeroSocialBtn name="LinkedIn" url="https://www.linkedin.com/in/alex-valverde-torres/">
+            <HeroSocialBtn name="LinkedIn" url="https://www.linkedin.com/in/alex-valverde-torres/" target="_blank">
                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-socials="true">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 9.5H4c-.943 0-1.414 0-1.707.293S2 10.557 2 11.5V20c0 .943 0 1.414.293 1.707S3.057 22 4 22h.5c.943 0 1.414 0 1.707-.293S6.5 20.943 6.5 20v-8.5c0-.943 0-1.414-.293-1.707S5.443 9.5 4.5 9.5m2-5.25a2.25 2.25 0 1 1-4.5 0a2.25 2.25 0 0 1 4.5 0m5.826 5.25H11.5c-.943 0-1.414 0-1.707.293S9.5 10.557 9.5 11.5V20c0 .943 0 1.414.293 1.707S10.557 22 11.5 22h.5c.943 0 1.414 0 1.707-.293S14 20.943 14 20v-3.5c0-1.657.528-3 2.088-3c.78 0 1.412.672 1.412 1.5v4.5c0 .943 0 1.414.293 1.707s.764.293 1.707.293h.499c.942 0 1.414 0 1.707-.293c.292-.293.293-.764.293-1.706L22 14c0-2.486-2.364-4.5-4.703-4.5c-1.332 0-2.52.652-3.297 1.673c0-.63 0-.945-.137-1.179a1 1 0 0 0-.358-.358c-.234-.137-.549-.137-1.179-.137" color="currentColor"></path>
                 </svg>
             </HeroSocialBtn>
-            <HeroSocialBtn name={t('global.social.resume')} url=`/alex-valverde-torres-${lang}.pdf`>
+            <HeroSocialBtn name={t('global.social.resume')} url=`/alex-valverde-torres-${lang}.pdf`target="_blank">
                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-socials="true">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.975 16.987V6.532c0-1.345.057-2.906 1.065-3.8C7.866 2 9.034 2 10.14 2h7.31c1.027 0 2.092.018 3.012.47q.112.055.213.115C22.042 3.388 22 5.302 22 6.885v10.532c0 1.041-.048 2.111-.48 3.059c-.414.907-.98 1.314-2.024 1.506M5.975 16.987h8.83c.413 0 .785.253.93.638c.126.337.23.627.323.9c.323.958.607 1.969 1.287 2.717c.409.45.838.678 1.41.74m-12.78-4.995H2.969c-.553 0-1.011.447-.966.997c.047.576.15 1.078.34 1.615c.336.95.92 1.911 1.88 2.225c.354.115.746.153 1.251.158h13.28m.742 0a4 4 0 0 1-.742 0m.742 0h-.742M10.469 7h7m-7 4h3.5" color="currentColor"></path>
                 </svg>
             </HeroSocialBtn>
-            <HeroSocialBtn name="Email" url="mailto:alexvalverdetorres2006@gmail.com">
+            <HeroSocialBtn name="Email" url="mailto:alexvalverdetorres2006@gmail.com" target="_blank">
                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-socials="true">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
                         <path d="m2 6l6.913 3.917c2.549 1.444 3.625 1.444 6.174 0L22 6"></path>
@@ -53,10 +53,44 @@ const t = useTranslations(lang);
                 </svg>
             </HeroSocialBtn>
         </div>
-        <div class="key-position flex items-center justify-center" data-astro-cid-socials>
-            <a id="cta-hero-btn" class="key call-to-action peer" href="#bento" data-block="center" data-astro-cid-socials="true">
-                <p class="call-to-action-content text-white" data-astro-cid-socials>{t('hero.cta.explore')}</p>
-            </a>
+        <div class="flex flex-row">
+            <div class="key-position flex items-center justify-center" data-astro-cid-socials>
+                <a id="cta-hero-btn" class="key call-to-action peer" href="#bento" data-block="center" data-astro-cid-socials="true">
+                    <p class="call-to-action-content text-white" data-astro-cid-socials>{t('hero.cta.explore')}</p>
+                </a>
+            </div>
+            <div class="board" data-astro-cid-socials>
+                <!-- Shows spanish translation button on /en/ page -->
+                { lang !== 'es' && (
+                    <HeroSocialBtn name="Español" url="/es/" target="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                            <path d="M0 0h36v36H0z" fill="none" />
+                            <path fill="#c60a1d" d="M36 27a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4z" />
+                            <path fill="#ffc400" d="M0 12h36v12H0z" />
+                            <path fill="#ea596e" d="M9 17v3a3 3 0 1 0 6 0v-3z" />
+                            <path fill="#f4a2b2" d="M12 16h3v3h-3z" />
+                            <path fill="#dd2e44" d="M9 16h3v3H9z" />
+                            <ellipse cx="12" cy="14.5" fill="#ea596e" rx="3" ry="1.5" />
+                            <ellipse cx="12" cy="13.75" fill="#ffac33" rx="3" ry=".75" />
+                            <path fill="#99aab5" d="M7 16h1v7H7zm9 0h1v7h-1z" />
+                            <path fill="#66757f" d="M6 22h3v1H6zm9 0h3v1h-3zm-8-7h1v1H7zm9 0h1v1h-1z" />
+                        </svg>
+                    </HeroSocialBtn>
+                )}
+
+                <!-- Shows english translation button on /es/ page -->
+                { lang !== 'en' && (
+                    <HeroSocialBtn name="English" url="/en/" target="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                            <path d="M0 0h36v36H0z" fill="none" />
+                            <path fill="#b22334" d="M35.445 7C34.752 5.809 33.477 5 32 5H18v2zM0 25h36v2H0zm18-8h18v2H18zm0-4h18v2H18zM0 21h36v2H0zm4 10h28c1.477 0 2.752-.809 3.445-2H.555c.693 1.191 1.968 2 3.445 2M18 9h18v2H18z" />
+                            <path fill="#eee" d="M.068 27.679q.025.14.059.277q.04.15.092.296c.089.259.197.509.333.743L.555 29h34.89l.002-.004a4 4 0 0 0 .332-.741a4 4 0 0 0 .152-.576c.041-.22.069-.446.069-.679H0c0 .233.028.458.068.679M0 23h36v2H0zm0-4v2h36v-2H18zm18-4h18v2H18zm0-4h18v2H18zM.555 7l-.003.005zM.128 8.044c.025-.102.06-.199.092-.297a4 4 0 0 0-.092.297M18 9h18c0-.233-.028-.459-.069-.68a3.6 3.6 0 0 0-.153-.576A4 4 0 0 0 35.445 7H18z" />
+                            <path fill="#3c3b6e" d="M18 5H4a4 4 0 0 0-4 4v10h18z" />
+                            <path fill="#fff" d="m2.001 7.726l.618.449l-.236.725L3 8.452l.618.448l-.236-.725L4 7.726h-.764L3 7l-.235.726zm2 2l.618.449l-.236.725l.617-.448l.618.448l-.236-.725L6 9.726h-.764L5 9l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L9 9l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L13 9l-.235.726zm-8 4l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L5 13l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L9 13l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L13 13l-.235.726zm-6-6l.618.449l-.236.725L7 8.452l.618.448l-.236-.725L8 7.726h-.764L7 7l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L11 7l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L15 7l-.235.726zm-12 4l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L3 11l-.235.726zM6.383 12.9L7 12.452l.618.448l-.236-.725l.618-.449h-.764L7 11l-.235.726h-.764l.618.449zm3.618-1.174l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L11 11l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L15 11l-.235.726zm-12 4l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L3 15l-.235.726zM6.383 16.9L7 16.452l.618.448l-.236-.725l.618-.449h-.764L7 15l-.235.726h-.764l.618.449zm3.618-1.174l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L11 15l-.235.726zm4 0l.618.449l-.236.725l.617-.448l.618.448l-.236-.725l.618-.449h-.764L15 15l-.235.726z" />
+                        </svg>
+                    </HeroSocialBtn>
+                )}
+            </div>
         </div>
     </div>
 </section>
