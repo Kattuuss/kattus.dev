@@ -5,9 +5,10 @@ const t = useTranslations(lang);
 
 import FooterSocialBtn from './FooterSocialBtn.astro';
 
-const now = new Date();
-const formattedDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+import { getFooterDateEn, getFooterDateEs, getFooterTimeEs, getFooterTimeEn } from '../../i18n/utils';
+const date = lang === 'es' ? getFooterDateEs() : getFooterDateEn();
+const time = lang === 'es' ? getFooterTimeEs() : getFooterTimeEn();
+
 ---
 
 <footer class="relative mt-auto w-full">
@@ -119,9 +120,9 @@ const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute:
 				<p class="text-xs w-full max-[960px]:text-center text-zinc-500">
 					{t('footer.last.update.author')}
 					<br class="sm:hidden">
-					{t('footer.last.update.date')} {formattedDate}
+					{t('footer.last.update.date')} {date}
 					<br class="sm:hidden">
-					{t('footer.last.update.hour1')} {formattedTime} {t('footer.last.update.hour2')}
+					{t('footer.last.update.hour1')} {time} {t('footer.last.update.hour2')}
 				</p>
 			</div>
 		</div>

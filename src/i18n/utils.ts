@@ -19,3 +19,45 @@ export function useTranslations(lang: keyof typeof ui) {
     return ui[lang][key] || ui[defaultLang][key];
   };
 }
+
+/**
+ * Function footer uses to get current date in spanish
+ * Returns a day, month and year in spanish
+ */
+export const getFooterDateEs = () => {
+  const now = new Date();
+  const day = now.getDate();
+  const year = now.getFullYear();
+
+  let month = now.toLocaleDateString('es', { month: 'long' });
+  month = month.charAt(0).toUpperCase() + month.slice(1);
+
+  return `${day} de ${month} de ${year}`;
+};
+
+/**
+ * Function footer uses to get current date in english
+ * Returns a day, month and year in english
+ */
+export const getFooterDateEn = () => {
+  const now = new Date();
+  return `${now.toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+};
+
+/**
+ * Function footer uses to get current time in 24 hours system
+ * Returns a hour and minutes in 24 hours system
+ */
+export const getFooterTimeEs = () => {
+  const now = new Date();
+  return `${now.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' })}`;
+}
+
+/**
+ * Function footer uses to get current time in 12 hours system
+ * Returns a hour and minutes in 12 hours system
+ */
+export const getFooterTimeEn = () => {
+  const now = new Date();
+  return `${now.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })}`;
+}
