@@ -1,8 +1,9 @@
 ---
+lang: en
 permalink: front-maxxing
 title: Front Maxxing
 description: My first step inside the front-end world.
-heroImage: ../../assets/artemis_two_mission.png
+heroImage: /src/assets/artemis_two_mission.png
 pubDate: "March 30, 2026"
 readTime: "6 min"
 tags:

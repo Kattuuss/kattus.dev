@@ -1,0 +1,25 @@
+---
+import '../../styles/global.css';
+import '../../styles/index.css';
+
+import Layout from "../../layouts/Layout.astro";
+import Lights from '../../components/Global/Lights.astro';
+import HeroSection from '../../components/Hero/HeroSection.astro';
+import BentoSection from '../../components/Bento/BentoSection.astro';
+import ProjectsSection from '../../components/Projects/ProjectsSection.astro';
+import BlogSection from '../../components/Blog/BlogSection.astro';
+import FooterSection from '../../components/Footer/FooterSection.astro';
+import NavIsland from '../../components/NavIsland/NavIsland.astro';
+---
+
+<Layout>
+    <Lights />
+    <main class="w-full max-w-[1200px] px-12 pb-16 tracking-wide transition-all max-sm:px-4">
+        <HeroSection />
+        <BentoSection />
+        <ProjectsSection />
+        <BlogSection />
+    </main>
+    <FooterSection />
+    <NavIsland />
+</Layout>

@@ -1,0 +1,19 @@
+---
+import '../../styles/global.css';
+import '../../styles/index.css';
+
+import Layout from '../../layouts/Layout.astro';
+import ProjectsSection from '../../components/Projects/ProjectsSection.astro';
+import FooterSection from '../../components/Footer/FooterSection.astro';
+import SecondaryLights from '../../components/Global/SecondaryLights.astro';
+import NavIsland from '../../components/NavIsland/NavIsland.astro';
+---
+
+<Layout>
+	<SecondaryLights />
+    <main class="w-full max-w-[1200px] px-12 pb-16 tracking-wide transition-all max-sm:px-4 mx-auto max-[960px]:-mt-[120px]">
+        <ProjectsSection />
+    </main>
+    <FooterSection />
+    <NavIsland />
+</Layout>
