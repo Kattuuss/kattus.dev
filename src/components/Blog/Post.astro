@@ -7,14 +7,14 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
-  title: String;
+  title: string;
   url: string;
   img: ImageMetadata;
   alt: string;
   datePublished: string;
   readTime: string;
   description: string;
-  technologies: [string, ...string[]]; 
+  technologies: string[]; 
 }
 
 const { title, url, img, alt, datePublished, readTime, description, technologies } = Astro.props;

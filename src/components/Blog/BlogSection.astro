@@ -13,6 +13,47 @@ import blueCarImg from '../../assets/a_car_surrounded_by_bluish_light.png';
 import artemisMissionImg from '../../assets/artemis_two_mission.png';
 import driftingCarImg from '../../assets/beige_japanese_drift.png';
 import StatusTag from './StatusTag.astro';
+
+interface Props {
+    limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const posts = [
+    {
+        title: t('blog.post1.title'),
+        url: `/${lang}/blog/learning-java`,
+        img: blueCarImg,
+        alt: t('blog.post1.alt'),
+        datePublished: t('blog.post1.date'),
+        readTime: "10 min",
+        description: t('blog.post1.description'),
+        technologies: ["java", "learning", "guide", "roadmap"]
+    },
+    {
+        title: t('blog.post2.title'),
+        url: `/${lang}/blog/front-maxxing`,
+        img: artemisMissionImg,
+        alt: t('blog.post2.alt'),
+        datePublished: t('blog.post2.date'),
+        readTime: "6 min",
+        description: t('blog.post2.description'),
+        technologies: ["html", "css", "tailwind", "astro"]
+    },
+    {
+        title: t('blog.post3.title'),
+        url: `/${lang}/blog/kattus-dev`,
+        img: driftingCarImg,
+        alt: t('blog.post3.alt'),
+        datePublished: t('blog.post3.date'),
+        readTime: "12 min",
+        description: t('blog.post3.description'),
+        technologies: ["astro", "tailwind", "learning", "zod", "typescript"]
+    },
+];
+
+const displayedPosts = limit ? posts.slice(0, limit) : posts;
 ---
 
 <!-- Blog Section -->
@@ -54,39 +95,18 @@ import StatusTag from './StatusTag.astro';
         <!-- New Post Tag -->
         <StatusTag vert_pos="-top-5" />
 
-        <!-- Post 1 -->
-        <Post
-            title={t('blog.post1.title')} 
-            url={`/${lang}/blog/learning-java`}
-            img={blueCarImg}
-            alt={t('blog.post1.alt')}
-            datePublished={t('blog.post1.date')}
-            readTime="10 min"
-            description={t('blog.post1.description')}
-            technologies={["java", "learning", "guide", "roadmap"]}
-        />
-
-        <!-- Post 2 -->
-        <Post 
-            title={t('blog.post2.title')}
-            url={`/${lang}/blog/front-maxxing`}
-            img={artemisMissionImg}
-            alt={t('blog.post2.alt')}
-            datePublished={t('blog.post2.date')}
-            readTime="6 min"
-            description={t('blog.post2.description')}
-            technologies={["html", "css", "tailwind", "astro"]}
-        />
-        
-        <!-- Post 3 -->
-        <Post 
-            title={t('blog.post3.title')}
-            url={`/${lang}/blog/kattus-dev`}
-            img={driftingCarImg}
-            alt={t('blog.post3.alt')}
-            datePublished={t('blog.post3.date')}
-            readTime="12 min"
-            description={t('blog.post3.description')}
-            technologies={["astro", "tailwind", "learning", "zod", "typescript"]}
-        />
+        <!-- Posts -->
+        {displayedPosts.map((post) => (
+            <Post 
+                title={post.title}
+                url={post.url}
+                img={post.img}
+                alt={post.alt}
+                datePublished={post.datePublished}
+                readTime={post.readTime}
+                description={post.description}
+                technologies={post.technologies}
+            />
+        ))}
+    </div>
 </section>

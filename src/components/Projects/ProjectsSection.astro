@@ -3,8 +3,6 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import ProjectCard from "./ProjectCard.astro";
@@ -14,6 +12,32 @@ const currentPath = Astro.url.pathname;
 import webKrawlerImg from '../../assets/web-krawler.svg';
 import muuMeImg from '../../assets/muume.svg';
 
+interface Props {
+    limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const projects = [
+    {
+        url: `/${lang}/projects/web-krawler`,
+        img: webKrawlerImg,
+        alt: t('projects.web-krawler.card.alt'),
+        year: "2026",
+        name: "web-krawler",
+        description: t('projects.web-krawler.card.description')
+    },
+    {
+        url: `/${lang}/projects/muume`,
+        img: muuMeImg,
+        alt: t('projects.muume.card.alt'),
+        year: "2026",
+        name: "muume",
+        description: t('projects.muume.card.description')
+    },
+];
+
+const displayedProjects = limit ? projects.slice(0, limit) : projects;
 ---
 
 <!-- Projects Section -->
@@ -50,24 +74,15 @@ import muuMeImg from '../../assets/muume.svg';
 
     <!-- Higlighted projects -->
     <div class="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- web-krawler -->
-        <ProjectCard 
-            url={`/${lang}/projects/web-krawler`}
-            img={webKrawlerImg}
-            alt={t('projects.web-krawler.card.alt')}
-            year="2026"
-            name="web-krawler"
-            description={t('projects.web-krawler.card.description')}
-        />
-
-        <!-- muume -->
-        <ProjectCard
-            url={`/${lang}/projects/muume`}
-            img={muuMeImg}
-            alt={t('projects.muume.card.alt')}
-            year="2026"
-            name="muume"
-            description={t('projects.muume.card.description')}
-        />
+        {displayedProjects.map((p) => (
+            <ProjectCard 
+                url={p.url}
+                img={p.img}
+                alt={p.alt}
+                year={p.year}
+                name={p.name}
+                description={p.description}
+            />
+        ))}
     </div>
 </section>
