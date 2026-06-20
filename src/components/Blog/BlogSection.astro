@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import Post from "./Post.astro";
@@ -8,6 +12,7 @@ const currentPath = Astro.url.pathname;
 import blueCarImg from '../../assets/a_car_surrounded_by_bluish_light.png';
 import artemisMissionImg from '../../assets/artemis_two_mission.png';
 import driftingCarImg from '../../assets/beige_japanese_drift.png';
+import StatusTag from './StatusTag.astro';
 ---
 
 <!-- Blog Section -->
@@ -20,74 +25,68 @@ import driftingCarImg from '../../assets/beige_japanese_drift.png';
                     <path d="M0 0h32v32H0z" fill="none" />
                     <path fill="currentColor" d="M4 24h10v2H4zm0-6h10v2H4zm22-4H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M6 6v6h20V6Zm20 22h-6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2m-6-8v6h6v-6Z" />
                 </svg>
-                <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">Blog</h2>
+                <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">{t('blog.section.tag')}</h2>
             </div>
 
             <!-- Section Title CHANGE!!! -->
             <h3 class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
-                Learning, Building, and
+                {t('blog.section.title.part1')}
                 <br class="max-sm:hidden">
-                Documenting
+                {t('blog.section.title.part2')}
             </h3>
 
             <!-- Section Description CHANGE!!! -->
             <p class="text-zinc-400 max-md:text-sm">
-                Insights and experiences from my journey as a developer—exploring ideas,
+                {t('blog.section.description.part1')}
                 <br class="max-sm:hidden">
-                overcoming challenges, and sharing lessons learned along the way.
+                {t('blog.section.description.part2')}
             </p>
         </div>
 
-        { currentPath === "/blog" || currentPath === "/blog/" ? 
-            <ReturnBtn msg="Return home" url="/" /> : 
-            <MoreBtn msg="View all articles" url="/blog" /> 
+        { currentPath === `/${lang}/blog` || currentPath === `/${lang}/blog/` ? 
+            <ReturnBtn msg={t('global.return.button')} /> : 
+            <MoreBtn msg={t('blog.view.more.button')} url={`/${lang}/blog/`} /> 
         }
     </div>
 
     <!-- Article List CHANGE!!! -->
     <div class="relative mt-12 w-full">
         <!-- New Post Tag -->
-        <div class="absolute -top-5 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 z-10 flex items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border border-zinc-600/75 bg-[#0b0e0f] enter-animation pointer-events-none">
-            <div class="relative size-4">
-                <div class="absolute size-full animate-ping rounded-full bg-purple-300 opacity-65"></div>
-                <div class="drop-shadow-green size-full rounded-full bg-purple-400"></div>
-            </div>
-            <h3 class="text-lg text-slate-200 max-xs:text-xs">New</h3>
-        </div>
+        <StatusTag vert_pos="-top-5" />
 
         <!-- Post 1 -->
         <Post
-            title="Learning Java" 
-            url="/blog/learning-java"
+            title={t('blog.post1.title')} 
+            url={`/${lang}/blog/learning-java`}
             img={blueCarImg}
-            alt="post about learning java"
-            datePublished="July 18, 2026"
+            alt={t('blog.post1.alt')}
+            datePublished={t('blog.post1.date')}
             readTime="10 min"
-            description="A brief post on how I learnt Java."
+            description={t('blog.post1.description')}
             technologies={["java", "learning", "guide", "roadmap"]}
         />
 
         <!-- Post 2 -->
         <Post 
-            title="Front Maxxing"
-            url="/blog/front-maxxing"
+            title={t('blog.post2.title')}
+            url={`/${lang}/blog/front-maxxing`}
             img={artemisMissionImg}
-            alt="post about learning front-end"
-            datePublished="March 30, 2026"
+            alt={t('blog.post2.alt')}
+            datePublished={t('blog.post2.date')}
             readTime="6 min"
-            description="My first step inside the front-end world."
+            description={t('blog.post2.description')}
             technologies={["html", "css", "tailwind", "astro"]}
         />
         
         <!-- Post 3 -->
         <Post 
-            title="Kattus.dev" 
-            url="/blog/kattus-dev"
+            title={t('blog.post3.title')}
+            url={`/${lang}/blog/kattus-dev`}
             img={driftingCarImg}
-            alt="post about how I made my own portflio"
-            datePublished="October 5, 2025"
+            alt={t('blog.post3.alt')}
+            datePublished={t('blog.post3.date')}
             readTime="12 min"
-            description="How I did and what I learned while doing my own porfolio?"
+            description={t('blog.post3.description')}
             technologies={["astro", "tailwind", "learning", "zod", "typescript"]}
         />
 </section>

@@ -1,4 +1,10 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import ProjectCard from "./ProjectCard.astro";
@@ -7,6 +13,7 @@ const currentPath = Astro.url.pathname;
 
 import webKrawlerImg from '../../assets/web-krawler.svg';
 import muuMeImg from '../../assets/muume.svg';
+
 ---
 
 <!-- Projects Section -->
@@ -19,25 +26,25 @@ import muuMeImg from '../../assets/muume.svg';
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path fill="currentColor" d="M12.876.64V.639l8.25 4.763c.541.313.875.89.875 1.515v9.525a1.75 1.75 0 0 1-.875 1.516l-8.25 4.762a1.75 1.75 0 0 1-1.75 0l-8.25-4.763a1.75 1.75 0 0 1-.875-1.515V6.917c0-.625.334-1.202.875-1.515L11.126.64a1.75 1.75 0 0 1 1.75 0m-1 1.298L4.251 6.34l7.75 4.474l7.75-4.474l-7.625-4.402a.25.25 0 0 0-.25 0m.875 19.123l7.625-4.402a.25.25 0 0 0 .125-.216V7.639l-7.75 4.474ZM3.501 7.64v8.803c0 .09.048.172.125.216l7.625 4.402v-8.947Z" />
                 </svg>
-                <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">Projects</h2>
+                <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">{t('projects.section.tag')}</h2>
             </div>
 
             <!-- Section intro CHANGE!!! -->
-            <h3 data-astro-transition-scope="astro-zl27eeyh-4" class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
-                Milestones in the
+            <h3 class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
+                {t('projects.section.title.part1')}
                 <br>
-                learning journey
+                {t('projects.section.title.part2')}
             </h3>
-            <p class="text-zinc-400 max-md:text-sm" data-astro-transition-scope="astro-6kb5rfva-5">
-                Each project marks a step forward, showcasing my growth and journey as a developer.
+            <p class="text-zinc-400 max-md:text-sm">
+                {t('projects.section.description.part1')}
                 <br class="max-md:hidden">
-                Explore how I’ve tackled challenges and built solutions along the way.
+                {t('projects.section.description.part2')}
             </p>
         </div>
 
-        { currentPath === "/projects" || currentPath === "/projects/" ? 
-            <ReturnBtn msg="Return home" url="/" /> : 
-            <MoreBtn msg="View all projects" url="/projects" /> 
+        { currentPath === `/${lang}/projects` || currentPath === `/${lang}/projects/` ? 
+            <ReturnBtn msg={t('global.return.button')} /> : 
+            <MoreBtn msg={t('projects.view.more.button')} url={`/${lang}/projects/`} /> 
         }
     </div>
 
@@ -45,22 +52,22 @@ import muuMeImg from '../../assets/muume.svg';
     <div class="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
         <!-- web-krawler -->
         <ProjectCard 
-            url="/projects/web-krawler"
+            url={`/${lang}/projects/web-krawler`}
             img={webKrawlerImg}
-            alt="Web-Krawler: A Simple Web Crawler for extracting hyperlinks."
+            alt={t('projects.web-krawler.card.alt')}
             year="2026"
             name="web-krawler"
-            description="A Java application that allows users to find and store inside a JSON file hyperlinks inside a given webpage."
+            description={t('projects.web-krawler.card.description')}
         />
 
         <!-- muume -->
-        <ProjectCard 
-            url="/projects/muume"
+        <ProjectCard
+            url={`/${lang}/projects/muume`}
             img={muuMeImg}
-            alt="MuuMe: A Web Application to privately chat with your people."
+            alt={t('projects.muume.card.alt')}
             year="2026"
             name="muume"
-            description="Designed for people who wants a privacy-first messaging web application. Soon on mobile!."
+            description={t('projects.muume.card.description')}
         />
     </div>
 </section>

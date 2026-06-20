@@ -10,6 +10,7 @@ const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: ({ image }) => z.object({
     permalink: z.string().optional(),
+    lang: z.enum(['es', 'en']).default('es'),
     title: z.string(),
     description: z.string(),
     heroImage: image(),
@@ -23,6 +24,7 @@ const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: ({ image }) => z.object({
     permalink: z.string().optional(),
+    lang: z.enum(['es', 'en']).default('es'),
     title: z.string(),
     description: z.string(),
     heroImage: image(),

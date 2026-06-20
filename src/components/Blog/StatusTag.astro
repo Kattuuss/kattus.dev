@@ -1,11 +1,15 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const { vert_pos } = Astro.props;
 ---
 
 <div class={`absolute ${vert_pos} left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 z-10 flex items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border border-zinc-600/75 bg-[#0b0e0f] pointer-events-none`}>
     <div class="relative size-4">
-        <div class="absolute size-full animate-ping rounded-full bg-purple-300 opacity-65"></div>
+            <div class="absolute size-full animate-ping rounded-full bg-purple-300 opacity-65"></div>
         <div class="drop-shadow-green size-full rounded-full bg-purple-400"></div>
     </div>
-    <h3 class="text-lg text-slate-200 max-xs:text-xs">New</h3>
+    <h3 class="text-lg text-slate-200 max-xs:text-xs">{t('blog.new.post.label')}</h3>
 </div>
