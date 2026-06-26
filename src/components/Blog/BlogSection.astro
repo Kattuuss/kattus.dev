@@ -6,13 +6,13 @@ const t = useTranslations(lang);
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import Post from "./Post.astro";
+import StatusTag from './StatusTag.astro';
 
 const currentPath = Astro.url.pathname;
 
-import blueCarImg from '../../assets/a_car_surrounded_by_bluish_light.png';
+import bluishCarImg from '../../assets/a_car_surrounded_by_bluish_light.png';
 import artemisMissionImg from '../../assets/artemis_two_mission.png';
 import driftingCarImg from '../../assets/beige_japanese_drift.png';
-import StatusTag from './StatusTag.astro';
 
 interface Props {
     limit?: number;
@@ -22,34 +22,26 @@ const { limit } = Astro.props;
 
 const posts = [
     {
-        title: t('blog.post1.title'),
-        url: `/${lang}/blog/learning-java`,
-        img: blueCarImg,
-        alt: t('blog.post1.alt'),
-        datePublished: t('blog.post1.date'),
-        readTime: "10 min",
-        description: t('blog.post1.description'),
-        technologies: ["java", "learning", "guide", "roadmap"]
-    },
-    {
-        title: t('blog.post2.title'),
-        url: `/${lang}/blog/front-maxxing`,
-        img: artemisMissionImg,
-        alt: t('blog.post2.alt'),
-        datePublished: t('blog.post2.date'),
-        readTime: "6 min",
-        description: t('blog.post2.description'),
-        technologies: ["html", "css", "tailwind", "astro"]
-    },
-    {
-        title: t('blog.post3.title'),
+        title: t('blog.tech.post1.title'),
+        category: "tech",
         url: `/${lang}/blog/kattus-dev`,
         img: driftingCarImg,
-        alt: t('blog.post3.alt'),
-        datePublished: t('blog.post3.date'),
+        alt: t('blog.tech.post1.alt'),
+        datePublished: t('blog.tech.post1.date'),
         readTime: "12 min",
-        description: t('blog.post3.description'),
+        description: t('blog.tech.post1.description'),
         technologies: ["astro", "tailwind", "learning", "zod", "typescript"]
+    },
+    {
+        title: t('blog.variety.post1.title'),
+        category: "variety",
+        url: `/${lang}/blog/good-will-huntin-review`,
+        img: artemisMissionImg,
+        alt: t('blog.variety.post1.alt'),
+        datePublished: t('blog.variety.post1.date'),
+        readTime: "12 min",
+        description: t('blog.variety.post1.description'),
+        technologies: ["film"]
     },
 ];
 
@@ -71,23 +63,27 @@ const displayedPosts = limit ? posts.slice(0, limit) : posts;
 
             <!-- Section Title CHANGE!!! -->
             <h3 class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
-                {t('blog.section.title.part1')}
-                <br class="max-sm:hidden">
-                {t('blog.section.title.part2')}
+                {t('blog.section.title.part1')} <br class="max-sm:hidden"> {t('blog.section.title.part2')}
             </h3>
 
             <!-- Section Description CHANGE!!! -->
             <p class="text-zinc-400 max-md:text-sm">
-                {t('blog.section.description.part1')}
-                <br class="max-sm:hidden">
-                {t('blog.section.description.part2')}
+                {t('blog.section.description.part1')} <br class="max-sm:hidden"> {t('blog.section.description.part2')}
             </p>
         </div>
 
-        { currentPath === `/${lang}/blog` || currentPath === `/${lang}/blog/` ? 
-            <ReturnBtn msg={t('global.return.button')} /> : 
-            <MoreBtn msg={t('blog.view.more.button')} url={`/${lang}/blog/`} /> 
-        }
+        <div class="flex flex-col gap-10 justify-center">
+            { currentPath === `/${lang}/blog` || currentPath === `/${lang}/blog/` ? 
+                <ReturnBtn msg={t('global.return.button')} /> : 
+                <MoreBtn msg={t('blog.view.more.button')} url={`/${lang}/blog/`} /> 
+            }
+
+            <div id="blog-filter" class="flex flex-row justify-center gap-3 max-sm:pt-8">
+                <button data-filter="all" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-amber-400 bg-amber-950/30 transition-all duration-300 cursor-pointer text-amber-100 font-bold">All</button>
+                <button data-filter="tech" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-amber-400 cursor-pointer font-bold">Tech</button>
+                <button data-filter="variety" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-amber-400 cursor-pointer font-bold">Variety</button>
+            </div>
+        </div>
     </div>
 
     <!-- Article List CHANGE!!! -->
@@ -97,16 +93,44 @@ const displayedPosts = limit ? posts.slice(0, limit) : posts;
 
         <!-- Posts -->
         {displayedPosts.map((post) => (
-            <Post 
-                title={post.title}
-                url={post.url}
-                img={post.img}
-                alt={post.alt}
-                datePublished={post.datePublished}
-                readTime={post.readTime}
-                description={post.description}
-                technologies={post.technologies}
-            />
+            <div class="post-item" data-category={post.category}>
+                <Post 
+                    title={post.title}
+                    url={post.url}
+                    img={post.img}
+                    alt={post.alt}
+                    datePublished={post.datePublished}
+                    readTime={post.readTime}
+                    description={post.description}
+                    technologies={post.technologies}
+                />
+            </div>
         ))}
     </div>
 </section>
+
+<script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.post-item');
+
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            // Reset buttons
+            buttons.forEach((b) => {
+                b.classList.remove('bg-amber-950/30', 'border-amber-400', 'text-amber-100');
+                b.classList.add('border-zinc-600');
+            });
+
+            // Active current
+            btn.classList.add('bg-amber-950/30', 'border-amber-400', 'text-amber-100');
+            btn.classList.remove('border-zinc-600');
+
+            // Filter posts
+            const filter = btn.getAttribute('data-filter');
+            posts.forEach((item) => {
+                const post = item as HTMLElement;
+                post.style.display = (filter === 'all' || post.getAttribute('data-category') === filter) ? 'block' : 'none';
+            });
+        });
+    });
+</script>

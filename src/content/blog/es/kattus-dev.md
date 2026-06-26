@@ -1,6 +1,7 @@
 ---
 lang: es
 permalink: kattus-portfolio
+category: tech
 title: How I made my own portfolio
 description: How I did and what I learned while doing my own porfolio?
 heroImage: /src/assets/beige_japanese_drift.png

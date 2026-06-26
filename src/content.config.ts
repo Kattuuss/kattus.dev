@@ -11,6 +11,7 @@ const blog = defineCollection({
   schema: ({ image }) => z.object({
     permalink: z.string().optional(),
     lang: z.enum(['es', 'en']).default('es'),
+    category: z.string(),
     title: z.string(),
     description: z.string(),
     heroImage: image(),
@@ -25,6 +26,7 @@ const projects = defineCollection({
   schema: ({ image }) => z.object({
     permalink: z.string().optional(),
     lang: z.enum(['es', 'en']).default('es'),
+    category: z.string(),
     title: z.string(),
     description: z.string(),
     heroImage: image(),

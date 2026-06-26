@@ -1,6 +1,7 @@
 ---
 lang: en
 permalink: muume
+category: Tech
 title: MuuMe
 description: Designed for people who wants a privacy-first messaging web application. Soon on mobile!.
 heroImage: /src/assets/muume.svg

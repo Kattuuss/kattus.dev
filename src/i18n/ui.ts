@@ -8,27 +8,34 @@ export const ui = {
     'global.read.label': 'de lectura',
     'global.on.this.page': 'En esta página',
     'global.read.more': 'Leer más',
+
     'hero.status.available': 'Disponible para trabajar',
     'hero.title.part1': 'Hola, soy Alex.',
     'hero.title.part2': 'Desarrollador de software.',
     'hero.description': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod illum quam odit cum. Natus facilis quam unde, ipsum doloribus cupiditate! Tenetur, expedita illo dolorem pariatur enim aspernatur debitis repellendus dolores?',
     'hero.cta.explore': 'Explorar más',
+    
     'bento.check.projects': 'Mira estos proyectos',
     'bento.tech.stack.label': 'Technologías',
     'bento.tech.description.title': "Technologías que sé usar",
     'bento.tech.description.content': 'Principalmente centrado en el ecosistema Java, pero siempre en busca de aprender nuevas tecnologías.',
     'bento.hello.label': 'Hola!',
+    
     'projects.section.tag': 'Proyectos',
     'projects.section.title.part1': 'Hitos en el',
     'projects.section.title.part2': 'proceso de aprendizaje',
     'projects.section.description.part1': 'Cada proyecto marca un paso adelante, mostrando mi crecimiento como desarrollador.',
     'projects.section.description.part2': 'Descubre como he afrontado los retos y desarrollado soluciones a lo largo del camino.',
     'projects.view.more.button': 'Ver todos mis proyectos',
+    
     'projects.web-krawler.card.alt': 'Web-Krawler: Un sencillo rastreador web para extraer hipervínculos.',
     'projects.web-krawler.card.description': 'Una aplicación Java que permite a los usuarios encontrar y almacenar hipervínculos dentro de una página web determinada en un archivo JSON.',
+    
     'projects.muume.card.alt': 'MuuMe: Una aplicación web para chatear en privado con tu gente.',
     'projects.muume.card.description': 'Diseñada para quienes buscan una aplicación web de mensajería que priorice la privacidad. ¡Próximamente disponible para móviles!',
+    
     'projects.slug.explore.more': 'Descubre más proyectos',
+    
     'blog.section.tag': 'Blog',
     'blog.section.title.part1': 'Aprendiendo, Construyendo y',
     'blog.section.title.part2': 'Documentando',
@@ -36,20 +43,21 @@ export const ui = {
     'blog.section.description.part2': 'superando desafíos y compartiendo las lecciones aprendidas en el camino.',
     'blog.view.more.button': 'Ver todos los articulos',
     'blog.new.post.label': 'Nuevo',
-    'blog.post1.title': 'Aprendiedo Java',
-    'blog.post1.alt': 'ariculo sobre como aprendí Java',
-    'blog.post1.date': 'Junio 18, 2026',
-    'blog.post1.description': 'Una breve publicación sobre cómo aprendí Java.',
-    'blog.post2.title': 'Front Maxxing',
-    'blog.post2.alt': 'ariculo sobre como aprendí a programar interfaces gráficas',
-    'blog.post2.date': 'Marzo 30, 2026',
-    'blog.post2.description': 'My primer paso en el mundo de las interfaces gráficas.',
-    'blog.post3.title': 'Kattus.dev',
-    'blog.post3.alt': 'articulo sobre como hice mi propio portafolio',
-    'blog.post3.date': 'Octubre 5, 2025',
-    'blog.post3.description': '¿Como hice y que aprendí haciendo mi propio portafolio?',
+    
+    'blog.tech.post1.title': 'Opinión sobre la película "Good Will Huntin"',
+    'blog.tech.post1.alt': 'articulo hablando sobre la película "Good Will Huntin"',
+    'blog.tech.post1.date': 'Octubre 5, 2025',
+    'blog.tech.post1.description': 'Algunos de mis pensamientos que me surgieron mientras veía la pelicula "Good Will Huntin"',
+    
+    'blog.variety.post1.title': 'Kattus.dev',
+    'blog.variety.post1.alt': 'articulo sobre como hice mi propio portafolio',
+    'blog.variety.post1.date': 'Octubre 5, 2025',
+    'blog.variety.post1.description': '¿Como hice y que aprendí haciendo mi propio portafolio?',
+
     'blog.slug.explore.more': 'Descubre más artículos',
+    
     'under.construction': 'Bajo construcción...',
+    
     'footer.description.part1': 'Una solucionador de problemas que disfruta',
     'footer.description.part2': 'aprendiendo y construyendo.',
     'footer.this.site': 'Esta web',
@@ -62,6 +70,7 @@ export const ui = {
     'footer.last.update.date': 'el',
     'footer.last.update.hour1': 'a las',
     'footer.last.update.hour2': '(UTC +02:00)',
+    
     'nav.home': 'Inicio',
     'nav.projects': 'Proyectos',
     'nav.blog': 'Blog',
@@ -73,16 +82,19 @@ export const ui = {
     'global.read.label': 'read',
     'global.on.this.page': 'On this page',
     'global.read.more': 'Leer más',
+    
     'hero.status.available': 'Available for work',
     'hero.title.part1': "Hi, I'm Alex.",
     'hero.title.part2': 'A software developer.',
     'hero.description': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod illum quam odit cum. Natus facilis quam unde, ipsum doloribus cupiditate! Tenetur, expedita illo dolorem pariatur enim aspernatur debitis repellendus dolores?',
     'hero.cta.explore': 'Explore more',
+    
     'bento.check.projects': 'Check this projects',
     'bento.tech.stack.label': 'Tech stack',
     'bento.tech.description.title': "Tech stacks I'm familiar with",
     'bento.tech.description.content': 'Primarily focused on the Java ecosystem, but always eager to explore and learn new technologies.',
     'bento.hello.label': 'Hi!',
+    
     'projects.read.more': 'Read more',
     'projects.section.tag': 'Projects',
     'projects.section.title.part1': 'Milestones in the',
@@ -90,11 +102,15 @@ export const ui = {
     'projects.section.description.part1': 'Each project marks a step forward, showcasing my growth and journey as a developer.',
     'projects.section.description.part2': 'Explore how I’ve tackled challenges and built solutions along the way.',
     'projects.view.more.button': 'View all projects',
+    
     'projects.web-krawler.card.alt': 'Web-Krawler: A Simple Web Crawler for extracting hyperlinks.',
     'projects.web-krawler.card.description': 'A Java application that allows users to find and store inside a JSON file hyperlinks inside a given webpage.',
+    
     'projects.muume.card.alt': 'MuuMe: A Web Application to privately chat with your people.',
     'projects.muume.card.description': 'Designed for people who wants a privacy-first messaging web application. Soon on mobile!.',
+    
     'projects.slug.explore.more': 'Explore more projects',
+    
     'blog.section.tag': 'Blog',
     'blog.section.title.part1': 'Learning, Building and',
     'blog.section.title.part2': 'Documenting',
@@ -102,20 +118,21 @@ export const ui = {
     'blog.section.description.part2': 'overcoming challenges, and sharing lessons learned along the way.',
     'blog.view.more.button': 'View all articles',
     'blog.new.post.label': 'New',
-    'blog.post1.title': 'Learning Java',
-    'blog.post1.alt': 'post about learning java',
-    'blog.post1.date': 'June 18, 2026',
-    'blog.post1.description': 'A brief post on how I learnt Java.',
-    'blog.post2.title': 'Front Maxxing',
-    'blog.post2.alt': 'post about learning front-end',
-    'blog.post2.date': 'March 30, 2026',
-    'blog.post2.description': 'My first step inside the front-end world.',
-    'blog.post3.title': 'Kattus.dev',
-    'blog.post3.alt': 'post about how I made my own portflio',
-    'blog.post3.date': 'October 5, 2025',
-    'blog.post3.description': 'How I did and what I learned while doing my own porfolio?',
+    
+    'blog.tech.post1.title': 'Kattus.dev',
+    'blog.tech.post1.alt': 'post about how I made my own portflio',
+    'blog.tech.post1.date': 'October 5, 2025',
+    'blog.tech.post1.description': 'How I did and what I learned while doing my own porfolio?',
+    
+    'blog.variety.post1.title': 'Review about "Good Will Huntin" film',
+    'blog.variety.post1.alt': 'article talking about "Good Will Huntin" film',
+    'blog.variety.post1.date': 'Octubre 5, 2025',
+    'blog.variety.post1.description': 'Some of my thougs I had while watching Good Will Huntin film',
+
     'blog.slug.explore.more': 'Explore more articles',
+    
     'under.construction': 'Under construction...',
+    
     'footer.description.part1': 'A dedicated problem-solver who thrives',
     'footer.description.part2': 'on learning and building.',
     'footer.this.site': 'This site',
@@ -128,6 +145,7 @@ export const ui = {
     'footer.last.update.date': 'on',
     'footer.last.update.hour1': 'at',
     'footer.last.update.hour2': '(UTC +02:00)',
+    
     'nav.home': 'Home',
     'nav.projects': 'Projects',
     'nav.blog': 'Blog',
