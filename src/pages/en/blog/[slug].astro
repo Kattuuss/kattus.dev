@@ -70,7 +70,7 @@ const { tags } = post.data;
             <aside class="w-60 shrink-0 space-y-8 max-lg:hidden">
                 <div class="font-secondary sticky top-32">
                     <p class="font-display text-lg font-semibold text-zinc-200">{t('aside.on.this.page')}</p>
-                    <ul class="mt-2 space-y-1.5 text-[0.9rem] text-zinc-500 scrollbar-color max-h-[480px] overflow-y-scroll">
+                    <ul class="mt-2 space-y-1.5 text-[0.9rem] text-zinc-400/90 scrollbar-color max-h-[480px] overflow-y-scroll">
                         {headings
                             .filter(h => h.depth <= 4)
                             .map(heading => (

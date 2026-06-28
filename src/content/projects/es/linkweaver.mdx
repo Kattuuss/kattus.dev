@@ -49,28 +49,28 @@ Al principio, subestimé la complejidad alrededor de la concurrencia, aunque gra
 Para interactuar con la web, utilicé la API nativa `HttpClient` de Java. Un detalle clave fue configurar el `User-Agent`. Muchos servidores bloquean peticiones que parecen genéricas; identificarse como un crawler específico ayuda a ser transparente y evitar bloqueos innecesarios. Otro ajuste clave fue usar `Redirect.ALWAYS` debido a que impide que el crawler se pierda y pueda avanzar a la próxima página.
 
 ```java
-  /* ===== HTTP Client ===== */
-  this.httpClient = HttpClient.newBuilder()
-    .followRedirects(HttpClient.Redirect.ALWAYS)
-    .connectTimeout(Duration.ofSeconds(5))
+/* ===== HTTP Client ===== */
+this.httpClient = HttpClient.newBuilder()
+  .followRedirects(HttpClient.Redirect.ALWAYS)
+  .connectTimeout(Duration.ofSeconds(5))
+  .build();
+
+/* ===== HTTP Request and Response ===== */
+try {
+  HttpRequest httpRequest =
+  HttpRequest.newBuilder()
+    .uri(URI.create(pageURL))
+    .header("User-Agent", "EasyCrawler/1.0") 
+    .timeout(Duration.ofSeconds(30))
+    .GET()
     .build();
 
-  /* ===== HTTP Request and Response ===== */
-  try {
-    HttpRequest httpRequest = HttpRequest.newBuilder()
-      .uri(URI.create(pageURL))
-      .header("User-Agent", "EasyCrawler/1.0") 
-      .timeout(Duration.ofSeconds(30))
-      .GET()
-      .build();
-
-      HttpResponse<String> httpResponse = httpClient.send(httpRequest, 
-      HttpResponse.BodyHandlers.ofString());
-      return httpResponse.body();
-
-  } catch (IOException | InterruptedException e) {
-      throw new RuntimeException(e);
-  }
+  HttpResponse<String> httpResponse = 
+  httpClient.send(httpRequest, 
+  
+  HttpResponse.BodyHandlers.ofString());
+  return httpResponse.body();
+}
 ```
 
 Gracias a esta implementación, el crawler es capaz de manejar redirecciones automáticamente y respetar los tiempos de respuesta del servidor, garantizando una comunicación robusta.

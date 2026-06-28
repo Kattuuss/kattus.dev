@@ -1,0 +1,164 @@
+---
+
+type AbstractTypes = 'abstract' | 'summary' | 'tldr';
+type InfoTypes = 'note' | 'info' | 'todo';
+type TipTypes = 'tip' | 'hint' | 'important';
+type SuccessTypes = 'success' | 'check' | 'done';
+type QuestionTypes = 'question' | 'help' | 'faq';
+type WarningTypes = 'warning' | 'caution' | 'attention';
+type DangerTypes = 'failure' | 'fail' | 'missing' | 'danger' | 'error';
+type OtherTypes = 'bug' | 'example' | 'quote' | 'cite';
+
+interface Props {
+  type: AbstractTypes | InfoTypes | TipTypes | SuccessTypes | QuestionTypes | WarningTypes | DangerTypes | OtherTypes;
+  title: string;
+}
+
+const { type, title } = Astro.props;
+
+// Callout icons
+const svgs = {
+  abstract: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-clipboard-list"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>',
+  note: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg>',
+  info: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-info"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>',
+  todo: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-check-circle-2"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>',
+  tip: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-flame"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path></svg>',
+  success: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-check"><path d="M20 6 9 17l-5-5"></path></svg>',
+  question: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>',
+  warning: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>',
+  failure: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>',
+  danger: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>',
+  bug: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-bug"><path d="M12 20v-9"></path><path d="M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"></path><path d="M14.12 3.88 16 2"></path><path d="M21 21a4 4 0 0 0-3.81-4"></path><path d="M21 5a4 4 0 0 1-3.55 3.97"></path><path d="M22 13h-4"></path><path d="M3 21a4 4 0 0 1 3.81-4"></path><path d="M3 5a4 4 0 0 0 3.55 3.97"></path><path d="M6 13H2"></path><path d="m8 2 1.88 1.88"></path><path d="M9 7.13V6a3 3 0 1 1 6 0v1.13"></path></svg>',
+  example: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-list"><path d="M3 5h.01"></path><path d="M3 12h.01"></path><path d="M3 19h.01"></path><path d="M8 5h13"></path><path d="M8 12h13"></path><path d="M8 19h13"></path></svg>',
+  quote: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-quote"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path></svg>', 
+};
+
+const iconMap: Record<string, string> = {
+  abstract: svgs.abstract,
+  summary: svgs.abstract,
+  tldr: svgs.abstract,
+  note: svgs.note,
+  info: svgs.info,
+  todo: svgs.todo,
+  tip: svgs.tip,
+  hint: svgs.tip,
+  important: svgs.tip,
+  success: svgs.success,
+  check: svgs.success,
+  done: svgs.success,
+  question: svgs.question,
+  help: svgs.question,
+  faq: svgs.question,
+  warning: svgs.warning,
+  caution: svgs.warning,
+  attention: svgs.warning,
+  failure: svgs.failure,
+  fail: svgs.failure,
+  missing: svgs.failure,
+  danger: svgs.danger,
+  error: svgs.danger,
+  bug: svgs.bug,
+  example: svgs.example,
+  quote: svgs.quote,
+  cite: svgs.quote,
+};
+
+const icon = iconMap[type] || svgs.note;
+---
+
+<div class={`callout callout-${type}`}>
+  <!-- Contenedor del título con su clase específica -->
+  <div class={`flex items-center callout-title callout-title-${type}`}>
+      <span class="icon-wrapper" set:html={icon} />
+      <span class="title">{title}</span>
+  </div>
+  <!-- Cuerpo del callout -->
+  <div>
+      <slot />
+  </div>
+</div>
+
+<style>
+  .callout { padding: 1.25rem; margin: 1.5rem 0; border: 2px solid; border-radius: 0.5rem; }
+  .callout-title { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 20px; font-weight: 600; }
+  .icon-wrapper :global(svg) { stroke: currentColor; }
+  
+  /* Obsidian style callouts */
+  .callout-abstract { border-color: #172828; background: #172828; }
+  .callout-summary { border-color: #172828; background: #172828; }
+  .callout-tldr { border-color: #172828; background: #172828; }
+
+  .callout-note { border-color: #111b28; background: #111b28; }
+  .callout-info { border-color: #111b28; background: #111b28; }
+  .callout-todo { border-color: #111b28; background: #111b28; }
+  
+  .callout-tip { border-color: #162525; background: #162525; }
+  .callout-hint { border-color: #162525; background: #162525; }
+  .callout-important { border-color: #162525; background: #162525; }
+
+  .callout-success { border-color: #16251c; background: #16251c; }
+  .callout-check { border-color: #16251c; background: #16251c; }
+  .callout-done { border-color: #16251c; background: #16251c; }
+
+  .callout-question { border-color: #251e15; background: #251e15; }
+  .callout-help { border-color: #251e15; background: #251e15; }
+  .callout-faq { border-color: #251e15; background: #251e15; }
+
+  .callout-warning { border-color: #262017; background: #262017; }
+  .callout-caution { border-color: #262017; background: #262017; }
+  .callout-attention { border-color: #262017; background: #262017; }
+
+  .callout-failure { border-color: #271617; background: #271617; }
+  .callout-fail { border-color: #271617; background: #271617; }
+  .callout-missing { border-color: #271617; background: #271617; }
+
+  .callout-danger { border-color: #281819; background: #281819; }
+  .callout-error { border-color: #281819; background: #281819; }
+
+  .callout-bug { border-color: #28191a; background: #28191a; }
+  
+  .callout-example { border-color: #201f2a; background: #201f2a; }
+  
+  .callout-quote { border-color: #222522; background: #222522; }
+  .callout-cite { border-color: #222522; background: #222522; }
+
+
+  /* Obsidian style callouts colours */
+  .callout-abstract { color: #50d8d6; }
+  .callout-summary { color: #50d8d6; }
+  .callout-tldr { color: #50d8d6; }
+
+  .callout-title-note { color: #1177f5; }
+  .callout-title-info { color: #1177f5; }
+  .callout-title-todo { color: #1177f5; }
+
+  .callout-title-tip { color: #50d6d5; }
+  .callout-title-hint { color: #50d6d5; }
+  .callout-title-important { color: #50d6d5; }
+  
+  .callout-title-success { color: #42c86c; }
+  .callout-title-check { color: #42c86c; }
+  .callout-title-done { color: #42c86c; }
+
+  .callout-title-question { color: #de923e; }
+  .callout-title-help { color: #de923e; }
+  .callout-title-faq { color: #de923e; }
+  
+  .callout-title-warning { color: #df9440; }
+  .callout-title-caution { color: #df9440; }
+  .callout-title-attention { color: #df9440; }
+  
+  .callout-title-failure { color: #f0454a; }
+  .callout-title-fail { color: #f0454a; }
+  .callout-title-missing { color: #f0454a; }
+
+  .callout-title-danger { color: #f0464c; }
+  .callout-title-error { color: #f0464c; }
+
+  .callout-title-bug { color: #f0474c; }
+  
+  .callout-title-example { color: #a280f6; }
+  
+  .callout-title-quote { color: #999d9b; }
+  .callout-title-cite { color: #999d9b; }
+</style>
