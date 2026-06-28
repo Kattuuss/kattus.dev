@@ -9,8 +9,8 @@ import ProjectCard from "./ProjectCard.astro";
 
 const currentPath = Astro.url.pathname;
 
-import webKrawlerImg from '../../assets/web-krawler.svg';
-import muuMeImg from '../../assets/muume.svg';
+import linkWeaverImg from '../../assets/projects/linkweaver/linkweaver.jpg';
+import muuMeImg from '../../assets/projects/muume/muume.jpg';
 
 interface Props {
     limit?: number;
@@ -20,19 +20,19 @@ const { limit } = Astro.props;
 
 const projects = [
     {
-        url: `/${lang}/projects/web-krawler`,
-        img: webKrawlerImg,
-        alt: t('projects.web-krawler.card.alt'),
+        url: `/${lang}/projects/linkweaver`,
+        img: linkWeaverImg,
+        alt: t('projects.linkweaver.card.alt'),
         year: "2026",
-        name: "web-krawler",
-        description: t('projects.web-krawler.card.description')
+        name: "LinkWeaver",
+        description: t('projects.linkweaver.card.description')
     },
     {
         url: `/${lang}/projects/muume`,
         img: muuMeImg,
         alt: t('projects.muume.card.alt'),
         year: "2026",
-        name: "muume",
+        name: "MuuMe",
         description: t('projects.muume.card.description')
     },
 ];

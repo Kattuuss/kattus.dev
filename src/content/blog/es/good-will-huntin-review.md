@@ -4,7 +4,7 @@ permalink: good-will-huntin-review
 category: variety
 title: Opinión sobre la película "Good Will Huntin"
 description: Algunos de mis pensamientos que me surgieron mientras veía la pelicula "Good Will Huntin".
-heroImage: /src/assets/artemis_two_mission.png
+heroImage: /src/assets/global/good-will-huntin.jpg
 pubDate: "October 5, 2025"
 readTime: "12 min"
 tags:

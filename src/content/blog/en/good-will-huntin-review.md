@@ -4,7 +4,7 @@ permalink: good-will-huntin-review
 category: variety
 title: Review about "Good Will Huntin" film
 description: Some of my thougs I had while watching Good Will Huntin film
-heroImage: /src/assets/artemis_two_mission.png
+heroImage: /src/assets/blog/good-will-huntin.jpg
 pubDate: "October 5, 2025"
 readTime: "12 min"
 tags:

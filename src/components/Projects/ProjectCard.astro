@@ -13,8 +13,7 @@ const { url, img, alt, year, name, description } = Astro.props;
         <Image src={img} alt={alt} loading="lazy" decoding="async" width="2787" height="4181" class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[2] transition-all duration-800 group-hover:scale-105 md:aspect-[1.5]" />
     </div> 
     <div class="flex flex-col gap-4" >
-        <p>{year}</p>
-        <h4 class="font-display text-xl font-semibold leading-tight! max-sm:text-lg">{name}</h4>
+        <h4 class="font-display text-xl font-semibold leading-tight! max-sm:text-lg">[{year}] {name}</h4>
         <p class="mt-2 text-zinc-400 max-md:text-sm">{description}</p>
         <span class="w-fit text-sm">{t('global.read.more')}
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="ml-1 inline-block transition-all duration-300 group-hover:ml-2">

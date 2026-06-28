@@ -1,10 +1,11 @@
 ---
 lang: en
 permalink: muume
-category: Tech
+category: tech
+sourceCode: https://github.com/Kattuuss/MuuMe
 title: MuuMe
 description: Designed for people who wants a privacy-first messaging web application. Soon on mobile!.
-heroImage: /src/assets/muume.svg
+heroImage: /src/assets/projects/muume/muume.jpg
 pubDate: "July 2, 2026"
 readTime: "4 min"
 tags:

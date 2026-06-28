@@ -1,0 +1,102 @@
+---
+lang: es
+permalink: linkweaver
+category: tech
+sourceCode: https://github.com/Kattuuss/LinkWeaver
+title: "LinkWeaver: Mi primer paso hacia la indexación web"
+description: Una aplicación Java que permite a los usuarios encontrar y almacenar hipervínculos dentro de una página web determinada, en un archivo JSON.
+heroImage: /src/assets/projects/linkweaver/linkweaver.jpg
+pubDate: "Junio 27, 2026"
+readTime: "5 min"
+tags:
+  - java
+  - jsoup
+  - jackson
+---
+
+## Descripción general
+A mediados de Abril de 2026, recordé el proyecto de un nuevo navegador, al que algunos llamaron ["Google Chrome Killer"](https://ladybird.org/).  Lo que comenzó como un recuerdo me llevó a buscar información sobre el desarrollo de navegadores junto al objetivo de resolver una duda: "¿Cuán difícil es construir un motor de búsqueda desde cero?". Tras un tiempo de investigación identifiqué 7 pilares necesarios para crear un motor de búsqueda que, aunque no competiría con Google Chrome, sí sería capaz de ofrecer resultados útiles. Estas 7 necesidades son:
+
+- **Rastreador (Crawler):** Descarga el código fuente de las páginas.
+- **Analizador sintáctico (Parser):** Extrae enlaces buscando elementos `<a>`.
+- **Indexador (Indexer):** Organiza los datos para búsquedas eficientes.
+- **Base de datos (Database):** Almacena la información para consultas rápidas.
+- **Motor de consultas (Query Engine):** Procesa la petición del usuario.
+- **Motor de relevancia (Relevance Engine):** Clasifica la importancia de los resultados.
+- **Interfaz gráfica (Frontend):** Interfaz de acceso para el usuario final.
+
+Más allá del reto funcional, este proyecto nació con un objetivo técnico claro: dominar el multihilo en Java, un punto clave en mi [ruta de aprendizaje](https://roadmap.sh/java).
+
+Actualmente, el proyecto se encuentra en la fase de indexar datos para búsquedas más eficientes, y mi meta es evolucionar este prototipo hacia un buscador funcional con capacidad de indexación real.
+
+## ¿Multihilo?
+Al principio, subestimé la complejidad alrededor de la concurrencia, aunque gracias a los recursos de [Jakob Jenkov](https://jenkov.com/tutorials/java-concurrency/index.html), logré asimilar la teoría. Sin embargo, pasar de la teoría a la implementación de hilos fue un salto enorme, por lo que tuve que plantear una estrategia de desarrollo incremental:
+
+- **Prototipo secuencial:** Primero construí el proyecto sin concurrencia para asegurar que la lógica de parsing, indexación y almacenamiento funcionaran correctamente.
+
+- **Laboratorio de pruebas:** Antes de llevar la concurrencia a LinkWeaver, creé [pequeños proyectos aislados](https://github.com/KattusOcean/java-review-old/tree/main/mini-projects/concurrency) (como una simulación de cajeros automáticos simultáneos) que me permitió entender conceptos críticos como Thread safety, condiciones de carrera y gestión de bloqueos.
+
+- **Implementación real:** Una vez dominados los conceptos, empecé a integrar hilos en el Crawler, permitiendo que la descarga de páginas ocurra en paralelo y no de forma bloqueante.
+
+<figure class="text-center">
+
+  ![LinkWeaverWorkflow](../../../assets/projects/linkweaver/linkweaver-flow.png)
+  <figcaption class="-mt-5">Figura 1: Diagrama de flujo del proceso de indexación concurrente.</figcaption>
+
+</figure>
+
+## Implementando el Cliente HTTP
+Para interactuar con la web, utilicé la API nativa `HttpClient` de Java. Un detalle clave fue configurar el `User-Agent`. Muchos servidores bloquean peticiones que parecen genéricas; identificarse como un crawler específico ayuda a ser transparente y evitar bloqueos innecesarios. Otro ajuste clave fue usar `Redirect.ALWAYS` debido a que impide que el crawler se pierda y pueda avanzar a la próxima página.
+
+```java
+  /* ===== HTTP Client ===== */
+  this.httpClient = HttpClient.newBuilder()
+    .followRedirects(HttpClient.Redirect.ALWAYS)
+    .connectTimeout(Duration.ofSeconds(5))
+    .build();
+
+  /* ===== HTTP Request and Response ===== */
+  try {
+    HttpRequest httpRequest = HttpRequest.newBuilder()
+      .uri(URI.create(pageURL))
+      .header("User-Agent", "EasyCrawler/1.0") 
+      .timeout(Duration.ofSeconds(30))
+      .GET()
+      .build();
+
+      HttpResponse<String> httpResponse = httpClient.send(httpRequest, 
+      HttpResponse.BodyHandlers.ofString());
+      return httpResponse.body();
+
+  } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+  }
+```
+
+Gracias a esta implementación, el crawler es capaz de manejar redirecciones automáticamente y respetar los tiempos de respuesta del servidor, garantizando una comunicación robusta.
+
+## Analizando Wikipedia: El reto de los datos reales
+Para poner a prueba la eficiencia de LinkWeaver, utilicé Wikipedia como mi principal dataset. Su estructura de enlaces masiva y variada es perfecta para llevar al límite cualquier motor de búsqueda. Este proceso no fue sencillo y me enfrenté a dos retos técnicos clave:
+
+- **Concurrencia y persistencia:** Al implementar multihilo, me encontré con condiciones de carrera donde el archivo JSON resultante se sobrescribía constantemente. Aprendí a gestionar la escritura de datos mediante Jackson, lo que me permitió manejar el objeto de salida de forma segura y estructurada.
+
+- **Limpieza de enlaces:** Descubrí que muchos de los recursos encontrados no eran URLs válidas, sino rutas relativas que no conducían a ninguna parte. Tras investigar la documentación, descubrí que la solución era mucho más sencilla de lo que pensaba: utilizar el método `absUrl()` de Jsoup. Este pequeño ajuste resolvió el problema de integridad de datos que me había llevado horas de debugging.
+
+## Optimizando el rendimiento: El poder de los Virtual Threads
+Como uno puede imaginar, el rastreo secuencial —descargar el código, analizarlo y almacenar los datos de forma recurrente hasta alcanzar la profundidad objetivo— es una tarea de E/S intensiva. Ejecutar esto sobre un único hilo resultó ser un cuello de botella crítico: el proceso era lento y no aprovechaba los recursos del sistema.
+
+Para resolverlo, integré los Virtual Threads de Java (introducidos en proyectos recientes de la JVM). Aunque la teoría detrás de la concurrencia es compleja, la recompensa fue inmediata:
+
+- **Resultados secuenciales:** 74 - 83 segundos.
+- **Resultados con Virtual Threads:** ~7 segundos.
+
+Esta reducción de casi el 90% en el tiempo de ejecución sobre mi propio sitio ([kattus.dev](https://kattus.dev/), profundidad 4) valida perfectamente la arquitectura multihilo que implementé. Además, para asegurar un comportamiento ético y evitar ser bloqueado por protocolos anti-bot, añadí una función de delay preventivo que simula un tiempo de espera natural de entre 500 y 3000ms entre peticiones.
+
+## El horizonte de LinkWeaver
+A estas alturas, LinkWeaver ha dejado de ser un experimento para convertirse en una arquitectura de rastreo y análisis que realmente funciona. Pero esto es solo el principio. El motor de búsqueda que me propuse construir al principio sigue en pleno desarrollo, y mi hoja de ruta para los próximos meses es muy clara: pasar de simplemente "recolectar" enlaces a que la información sea realmente útil.
+
+Ahora mismo estoy metido de lleno en el desarrollo del **Indexador** y la **Base de Datos**. El reto aquí no es solo guardar datos, sino estructurarlos para que, cuando necesite hacer una búsqueda, el resultado sea instantáneo. Después de esto, implementaré el **Motor de Consultas** y el **Motor de Relevancia**, que es básicamente el cerebro del buscador para que, cuando busques algo, no te salga cualquier cosa, sino lo que de verdad importa.
+
+Todavía falta un buen tramo hasta llegar a la **Interfaz Gráfica**, pero construir un buscador desde cero me está enseñando cómo funciona la web "por debajo" como ninguna otra cosa. Más allá de que el proyecto funcione, lo mejor de todo es lo que estoy aprendiendo en el proceso.
+
+Todo el desarrollo seguirá siendo público en GitHub. Iré publicando actualizaciones por aquí o escribiendo nuevos posts sobre los avances. Cualquier ayuda o sugerencia que tengáis es más que bienvenida. ¡Mil gracias por leer!

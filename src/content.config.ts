@@ -27,6 +27,8 @@ const projects = defineCollection({
     permalink: z.string().optional(),
     lang: z.enum(['es', 'en']).default('es'),
     category: z.string(),
+    sourceCode: z.string().optional(),
+    demo: z.string().optional(),
     title: z.string(),
     description: z.string(),
     heroImage: image(),

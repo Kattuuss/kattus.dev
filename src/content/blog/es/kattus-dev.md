@@ -4,7 +4,7 @@ permalink: kattus-portfolio
 category: tech
 title: How I made my own portfolio
 description: How I did and what I learned while doing my own porfolio?
-heroImage: /src/assets/beige_japanese_drift.png
+heroImage: /src/assets/global/beige_japanese_drift.png
 pubDate: "October 5, 2025"
 readTime: "12 min"
 tags:
