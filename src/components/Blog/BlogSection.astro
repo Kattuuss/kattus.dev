@@ -10,9 +10,8 @@ import StatusTag from './StatusTag.astro';
 
 const currentPath = Astro.url.pathname;
 
-import goodWillHuntin from '../../assets/blog/good-will-huntin.jpg'; 
-import artemisMissionImg from '../../assets/global/artemis_two_mission.png';
-import driftingCarImg from '../../assets/global/beige_japanese_drift.png';
+import kattudDevImg from '../../assets/blog/kattus.dev/kattus.dev.png'
+import driftingCarImg from '../../assets/global/beige_japanese_drift.png'; 
 
 interface Props {
     limit?: number;
@@ -25,7 +24,7 @@ const posts = [
         title: t('blog.tech.post1.title'),
         category: "tech",
         url: `/${lang}/blog/kattus-dev`,
-        img: driftingCarImg,
+        img: kattudDevImg,
         alt: t('blog.tech.post1.alt'),
         datePublished: t('blog.tech.post1.date'),
         readTime: "12 min",
@@ -35,13 +34,13 @@ const posts = [
     {
         title: t('blog.variety.post1.title'),
         category: "variety",
-        url: `/${lang}/blog/good-will-huntin-review`,
-        img: goodWillHuntin,
+        url: `/${lang}/blog/template`,
+        img: driftingCarImg,
         alt: t('blog.variety.post1.alt'),
         datePublished: t('blog.variety.post1.date'),
-        readTime: "12 min",
+        readTime: "? min",
         description: t('blog.variety.post1.description'),
-        technologies: ["film"]
+        technologies: ["template"]
     },
 ];
 
@@ -79,9 +78,9 @@ const displayedPosts = limit ? posts.slice(0, limit) : posts;
             }
 
             <div id="blog-filter" class="flex flex-row justify-center gap-3 max-sm:pt-8">
-                <button data-filter="all" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-[gold] bg-amber-950/30 transition-all duration-300 cursor-pointer text-[gold] font-bold">All</button>
-                <button data-filter="tech" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-[gold] cursor-pointer font-bold">Tech</button>
-                <button data-filter="variety" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-[gold] cursor-pointer font-bold">Variety</button>
+                <button data-filter="all" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-[gold] bg-amber-950/30 transition-all duration-300 cursor-pointer text-[gold] font-bold">{t('blog.filter.categories.all')}</button>
+                <button data-filter="tech" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-[gold] cursor-pointer font-bold">{t('blog.filter.categories.tech')}</button>
+                <button data-filter="variety" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-[gold] cursor-pointer font-bold">{t('blog.filter.categories.variety')}</button>
             </div>
         </div>
     </div>

@@ -259,7 +259,7 @@ svg[data-astro-cid-socials] {
 
 /* Custom card */
 .custom-card:hover, .custom-card:focus {
-    background: linear-gradient(90deg, gold 5%, darkorchid 20%);
+    background: linear-gradient(90deg, gold 5%, darkorchid 55%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -271,7 +271,7 @@ svg[data-astro-cid-socials] {
 
 /* Custom blog */
 .blog:hover, .blog:focus {
-    background: linear-gradient(90deg, gold 5%, darkorchid 55%);
+    background: linear-gradient(90deg, gold 5%, darkorchid 95%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

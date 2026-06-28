@@ -43,17 +43,20 @@ export const ui = {
     'blog.section.description.part1': 'Perspectivas y experiencias de mi trayectoria dentro y fuera del sector,',
     'blog.section.description.part2': 'superando desafíos y compartiendo aquello que aprendí en el camino.',
     'blog.view.more.button': 'Ver todos los articulos',
+    'blog.filter.categories.all': 'Todo',
+    'blog.filter.categories.tech': 'Tecnología',
+    'blog.filter.categories.variety': 'Variedad',
     'blog.new.post.label': 'Nuevo',
     
     'blog.tech.post1.title': 'Kattus.dev',
     'blog.tech.post1.alt': 'articulo sobre como hice mi propio portafolio',
-    'blog.tech.post1.date': 'Octubre 5, 2025',
+    'blog.tech.post1.date': 'Junio 28, 2026',
     'blog.tech.post1.description': '¿Cómo hice y que aprendí haciendo mi propio portafolio?',
 
-    'blog.variety.post1.title': 'Opinión sobre la película "Good Will Huntin"',
-    'blog.variety.post1.alt': 'articulo hablando sobre la película "Good Will Huntin"',
-    'blog.variety.post1.date': 'Octubre 5, 2025',
-    'blog.variety.post1.description': 'Algunos de mis pensamientos que me surgieron mientras veía la pelicula "Good Will Huntin"',
+    'blog.variety.post1.title': 'Template Post',
+    'blog.variety.post1.alt': 'template post',
+    'blog.variety.post1.date': '???',
+    'blog.variety.post1.description': 'Template post description',
 
     'blog.slug.explore.more': 'Descubre más artículos',
     
@@ -124,17 +127,20 @@ export const ui = {
     'blog.section.description.part1': 'Insights and experiences from my career inside and outside the sector,',
     'blog.section.description.part2': 'overcoming challenges and sharing what I learned along the way.',
     'blog.view.more.button': 'View all articles',
+    'blog.filter.categories.all': 'All',
+    'blog.filter.categories.tech': 'Tech',
+    'blog.filter.categories.variety': 'Variety',
     'blog.new.post.label': 'New',
     
     'blog.tech.post1.title': 'Kattus.dev',
     'blog.tech.post1.alt': 'post about how I made my own portflio',
-    'blog.tech.post1.date': 'October 5, 2025',
+    'blog.tech.post1.date': 'June 28, 2026',
     'blog.tech.post1.description': 'How I did and what I learned while doing my own porfolio?',
     
-    'blog.variety.post1.title': 'Review about "Good Will Huntin" film',
-    'blog.variety.post1.alt': 'article talking about "Good Will Huntin" film',
-    'blog.variety.post1.date': 'Octubre 5, 2025',
-    'blog.variety.post1.description': 'Some of my thoughts I had while watching Good Will Huntin film',
+    'blog.variety.post1.title': 'Template Post',
+    'blog.variety.post1.alt': 'template post',
+    'blog.variety.post1.date': '???',
+    'blog.variety.post1.description': 'Template post description',
 
     'blog.slug.explore.more': 'Explore more articles',
     
