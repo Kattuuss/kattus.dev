@@ -30,9 +30,9 @@
 </article>
 
 <style is:global>
-    /* Code backslashes removal */
-    .prose :where(code):not(pre code)::before,
-    .prose :where(code):not(pre code)::after {
-    content: none !important;
+    /* Remove backslashes */
+    .prose pre code::before,
+    .prose pre code::after {
+        content: none !important;
     }
 </style>

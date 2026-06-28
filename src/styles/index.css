@@ -226,8 +226,10 @@ svg[data-astro-cid-socials] {
     transition: .3s ease-out
 }
 
-.discover-more:hover .discover-more:after .discover-more:active .discover-more.isDown {
-    width: 70%
+.discover-more:hover:after,
+.discover-more:active:after,
+.discover-more.isDown:after {
+    width: 70%;
 }
 
 .discover-more:active,
