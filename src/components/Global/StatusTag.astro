@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Status type
+interface Props {
+    status: 'new' | 'pinned';
+    vert_pos?: string;
+}
+
+const { status, vert_pos = "-top-5" } = Astro.props;
+
+// Style dicctionary
+const styles = {
+    pinned: "border-purple-500/50",
+    new: "border-yellow-500/50",
+    default: "hidden"
+};
+---
+
+<div class={`absolute ${vert_pos} left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 z-10 flex items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border ${styles[status]} bg-[#0b0e0f] pointer-events-none`}>
+    <div class="relative size-4">
+        <div class={`absolute size-full animate-ping rounded-full opacity-65 ${status === 'pinned' ? 'bg-purple-300' : 'bg-yellow-300'}`}></div>
+        <div class={`size-full rounded-full ${status === 'pinned' ? 'bg-purple-400' : 'bg-yellow-400'}`}></div>
+    </div>
+    <!-- Usamos el status para obtener la traducción desde tu i18n -->
+    <h3 class="text-lg text-slate-200 max-xs:text-xs">{t(`posts.entries.${status}`)}</h3>
+</div>

@@ -1,50 +1,46 @@
 ---
+// Translation
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+// Collections
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blog');
+
+const posts = allPosts
+    .filter((post) => post.data.lang === lang)
+    .map((post) => ({
+        title: post.data.title,
+        url: `/${lang}/blog/${post.id.replace(lang + '/', '').replace(/\.mdx?$/, '')}`, 
+        img: post.data.banner,
+        alt: post.data.alt,
+        datePublished: post.data.pubDate,
+        readTime: post.data.readTime,
+        description: post.data.description,
+        technologies: post.data.tags,
+        category: post.data.category,
+        status: post.data.status as 'new' | 'pinned' | undefined
+    }));
+
+// More weight = higher on the list
+const statusWeight = { pinned: 1, new: 2, default: 3 };
+
+const sortedPosts = [...posts].sort((a, b) => {
+    const weightA = statusWeight[a.status as keyof typeof statusWeight] || statusWeight.default;
+    const weightB = statusWeight[b.status as keyof typeof statusWeight] || statusWeight.default;
+    return weightA - weightB;
+});
+
+const { limit } = Astro.props;
+const displayedPosts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+
+// Components
+const currentPath = Astro.url.pathname;
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import Post from "./Post.astro";
-import StatusTag from './StatusTag.astro';
-
-const currentPath = Astro.url.pathname;
-
-import kattudDevImg from '../../assets/blog/kattus.dev/kattus.dev.png'
-import driftingCarImg from '../../assets/global/beige_japanese_drift.png'; 
-
-interface Props {
-    limit?: number;
-}
-
-const { limit } = Astro.props;
-
-const posts = [
-    {
-        title: t('blog.tech.post1.title'),
-        category: "tech",
-        url: `/${lang}/blog/kattus-dev`,
-        img: kattudDevImg,
-        alt: t('blog.tech.post1.alt'),
-        datePublished: t('blog.tech.post1.date'),
-        readTime: "12 min",
-        description: t('blog.tech.post1.description'),
-        technologies: ["astro", "tailwind", "learning", "zod", "typescript"]
-    },
-    {
-        title: t('blog.variety.post1.title'),
-        category: "variety",
-        url: `/${lang}/blog/template`,
-        img: driftingCarImg,
-        alt: t('blog.variety.post1.alt'),
-        datePublished: t('blog.variety.post1.date'),
-        readTime: "? min",
-        description: t('blog.variety.post1.description'),
-        technologies: ["template"]
-    },
-];
-
-const displayedPosts = limit ? posts.slice(0, limit) : posts;
+import StatusTag from '../Global/StatusTag.astro';
 ---
 
 <!-- Blog Section -->
@@ -87,12 +83,15 @@ const displayedPosts = limit ? posts.slice(0, limit) : posts;
 
     <!-- Article List CHANGE!!! -->
     <div class="relative mt-12 w-full">
-        <!-- New Post Tag -->
-        <StatusTag vert_pos="-top-5" />
-
         <!-- Posts -->
-        {displayedPosts.map((post) => (
-            <div class="post-item" data-category={post.category}>
+            {displayedPosts.map((post) => (
+                <div class="post-item relative" data-category={post.category}>
+
+                {/* Post status tag */}
+                {post.status && (
+                    <StatusTag status={post.status} vert_pos="-top-5" />
+                )}
+                
                 <Post 
                     title={post.title}
                     url={post.url}

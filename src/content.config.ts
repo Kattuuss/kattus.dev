@@ -9,12 +9,14 @@ import { z } from 'astro/zod';
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: ({ image }) => z.object({
-    permalink: z.string().optional(),
     lang: z.enum(['es', 'en']).default('es'),
+    permalink: z.string().optional(),
+    status: z.string().optional(),
     category: z.string(),
     title: z.string(),
+    alt: z.string(),
     description: z.string(),
-    heroImage: image(),
+    banner: image(),
     pubDate: z.string(),
     readTime: z.string(),
     tags: z.array(z.string())
@@ -24,17 +26,21 @@ const blog = defineCollection({
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
   schema: ({ image }) => z.object({
-    permalink: z.string().optional(),
     lang: z.enum(['es', 'en']).default('es'),
+    permalink: z.string().optional(),
+    status: z.string().optional(),
     category: z.string(),
-    sourceCode: z.string().optional(),
-    demo: z.string().optional(),
+    year: z.string(),
+    name: z.string(),
     title: z.string(),
+    alt: z.string(),
     description: z.string(),
-    heroImage: image(),
+    banner: image(),
     pubDate: z.string(),
     readTime: z.string(),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
+    sourceCode: z.string().optional(),
+    demo: z.string().optional(),
   }),
 });
 

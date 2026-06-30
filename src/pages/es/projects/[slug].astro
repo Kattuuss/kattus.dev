@@ -57,7 +57,7 @@ const { tags } = post.data;
         
         <!-- Hero image -->
         <div class="h-fit w-fit bg-cover bg-center ambient-mode rounded-lg mt-8 sm:mt-12">
-            <Image src={post.data.heroImage} alt={post.data.title} class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[1.5] w-full xs:aspect-[2]"/>
+            <Image src={post.data.banner} alt={post.data.title} class="object-cover object-center h-[inherit] max-h-[inherit] rounded-[inherit] aspect-[1.5] w-full xs:aspect-[2]"/>
         </div>
 
         <!-- Article section -->
@@ -131,11 +131,11 @@ const { tags } = post.data;
         
         <!-- Explore more button -->
         <section class="group w-fit mt-16">
-            <a class="custom-link group-hover:font-bold underline-offset-5 no-underline text-purple-400" href=`/${lang}/blog`>
+            <a class="custom-link group-hover:font-bold underline-offset-5 no-underline text-purple-400" href=`/${lang}/projects`>
                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="mr-2 inline-block size-4 -scale-x-100">
                     <path fill="currentColor" d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"></path>
                 </svg>
-                {t('blog.slug.explore.more')}
+                {t('projects.slug.explore.more')}
             </a>
         </section>
     </main>

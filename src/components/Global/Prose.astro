@@ -30,9 +30,7 @@
 </article>
 
 <style is:global>
-    /* Remove backslashes */
-    .prose pre code::before,
-    .prose pre code::after {
-        content: none !important;
-    }
+    /* Remove backticks */
+    .prose :where(code):not(:where(pre *))::before,
+    .prose :where(code):not(:where(pre *))::after { content: "" !important; }
 </style>

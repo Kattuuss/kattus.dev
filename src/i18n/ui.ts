@@ -46,7 +46,9 @@ export const ui = {
     'blog.filter.categories.all': 'Todo',
     'blog.filter.categories.tech': 'Tecnología',
     'blog.filter.categories.variety': 'Variedad',
-    'blog.new.post.label': 'Nuevo',
+
+    'posts.entries.new': 'New',
+    'posts.entries.pinned': 'Pinned',
     
     'blog.tech.post1.title': 'Kattus.dev',
     'blog.tech.post1.alt': 'articulo sobre como hice mi propio portafolio',
@@ -130,7 +132,9 @@ export const ui = {
     'blog.filter.categories.all': 'All',
     'blog.filter.categories.tech': 'Tech',
     'blog.filter.categories.variety': 'Variety',
-    'blog.new.post.label': 'New',
+    
+    'posts.entries.new': 'New',
+    'posts.entries.pinned': 'Pinned',
     
     'blog.tech.post1.title': 'Kattus.dev',
     'blog.tech.post1.alt': 'post about how I made my own portflio',

@@ -1,43 +1,46 @@
 ---
+// Translation
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+// Collections
+import { getCollection } from 'astro:content';
+const allProjects = await getCollection('projects');
+
+const projects = allProjects
+    .filter((project) => project.data.lang === lang)
+    .map((project) => ({
+        title: project.data.title,
+        category: project.data.category,
+        url: `/${lang}/projects/${project.data.permalink}`, 
+        img: project.data.banner,
+        alt: project.data.alt,
+        year: project.data.year,
+        name: project.data.name,
+        description: project.data.description,
+        status: project.data.status as 'new' | 'pinned' | undefined,
+        tags: project.data.tags
+    }));
+
+// More weight = higher on the list
+const statusWeight = { pinned: 1, new: 2, default: 3 };
+
+const sortedProjects = [...projects].sort((a, b) => {
+    const weightA = statusWeight[a.status as keyof typeof statusWeight] || statusWeight.default;
+    const weightB = statusWeight[b.status as keyof typeof statusWeight] || statusWeight.default;
+    return weightA - weightB;
+});
+
+const { limit } = Astro.props;
+const displayedProjects = limit ? sortedProjects.slice(0, limit) : sortedProjects;
+
+
+const currentPath = Astro.url.pathname;
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import ProjectCard from "./ProjectCard.astro";
-
-const currentPath = Astro.url.pathname;
-
-import linkWeaverImg from '../../assets/projects/linkweaver/linkweaver.jpg';
-import muuMeImg from '../../assets/projects/muume/muume.jpg';
-
-interface Props {
-    limit?: number;
-}
-
-const { limit } = Astro.props;
-
-const projects = [
-    {
-        url: `/${lang}/projects/linkweaver`,
-        img: linkWeaverImg,
-        alt: t('projects.linkweaver.card.alt'),
-        year: "2026",
-        name: "LinkWeaver",
-        description: t('projects.linkweaver.card.description')
-    },
-    {
-        url: `/${lang}/projects/muume`,
-        img: muuMeImg,
-        alt: t('projects.muume.card.alt'),
-        year: "2026",
-        name: "MuuMe",
-        description: t('projects.muume.card.description')
-    },
-];
-
-const displayedProjects = limit ? projects.slice(0, limit) : projects;
+import StatusTag from '../Global/StatusTag.astro';
 ---
 
 <!-- Projects Section -->
@@ -74,15 +77,25 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
     <!-- Higlighted projects -->
     <div class="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        {displayedProjects.map((p) => (
-            <ProjectCard 
-                url={p.url}
-                img={p.img}
-                alt={p.alt}
-                year={p.year}
-                name={p.name}
-                description={p.description}
-            />
+        <!-- Posts -->
+        {displayedProjects.map((project) => (
+            <div class="post-item relative" data-category={project.category}>
+                {/* Project status tag */}
+                {project.status && (
+                    <StatusTag status={project.status} vert_pos="-top-5" />
+                )}
+                
+                <ProjectCard 
+                    title={project.title}
+                    url={project.url}
+                    img={project.img}
+                    alt={project.alt}
+                    year={project.year}
+                    name={project.name}
+                    description={project.description}
+                    technologies={project.tags}
+                />
+            </div>
         ))}
     </div>
 </section>
