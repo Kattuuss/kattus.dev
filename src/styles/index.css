@@ -260,8 +260,16 @@ svg[data-astro-cid-socials] {
 }
 
 /* Custom card */
-.custom-card:hover, .custom-card:focus {
-    background: linear-gradient(90deg, gold 5%, darkorchid 55%);
+.custom-card:hover h4, .custom-card:focus h4 {
+    background: linear-gradient(90deg, gold 5%, darkorchid 45%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-card:hover .read-more, .custom-card:focus .read-more {
+    /* background: linear-gradient(90deg, gold 5%, darkorchid 95%); */
+    background-color: gold;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -272,8 +280,16 @@ svg[data-astro-cid-socials] {
 }
 
 /* Custom blog */
-.blog:hover, .blog:focus {
+.blog:hover h4, .blog:focus h4 {
     background: linear-gradient(90deg, gold 5%, darkorchid 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.blog:hover .read-more, .blog:focus .read-more {
+    /* background: linear-gradient(90deg, gold 5%, darkorchid 95%); */
+    background-color: gold;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -281,4 +297,14 @@ svg[data-astro-cid-socials] {
 
 .blog:hover svg, .blog:focus svg{
     color: gold;
+}
+
+/* Custom nav island */
+.nav-island {
+    background: 
+        linear-gradient(#0b0e0f) padding-box,
+        linear-gradient(90deg, gold, darkorchid) border-box;
+        
+    border: 2px solid transparent;
+    border-radius: 16px;
 }
