@@ -18,7 +18,7 @@ tags:
 ---
 
 ## Overview
-In mid-April 2026, I remembered the project for a new browser that some dubbed the "Google Chrome Killer" ([Ladybird](https://ladybird.org/)). What started as a memory led me to look into how browsers are developed and to answer a question: "How hard is it to build a search engine from scratch?". After some research, I identified 7 pillars necessary to create a search engine that, while not intended to compete with Google Chrome, would be capable of delivering useful results. These 7 needs are:
+In mid-April 2026, I remembered the project for a new browser with its own search engine that some dubbed the "Google Chrome Killer" ([Ladybird](https://ladybird.org/)). What started as a memory led me to look into how browsers and its search engines are developed and to answer a question: "How hard is it to build a search engine from scratch?". After some research, I identified 7 pillars necessary to create a search engine that, while not intended to compete with [Google](https://www.google.com) or [DuckDuckGo](https://duckduckgo.com/), would be capable of delivering useful results. These 7 needs are:
 
 - **Crawler:** Downloads the source code of pages.
 - **Parser:** Extracts links by looking for `<a>` elements.
@@ -81,19 +81,19 @@ Thanks to this implementation, the crawler can handle redirects automatically an
 ## Analyzing Wikipedia: The challenge of real data
 To test LinkWeaver's efficiency, I used Wikipedia as my main dataset. Its massive and varied link structure is perfect for pushing any search engine to its limits. This process wasn't easy, and I faced two key technical challenges:
 
-- **Concurrency and persistence:** When implementing multithreading, I ran into race conditions where the resulting JSON file was constantly being overwritten. I learned to manage data writing using Jackson, which allowed me to handle the output object in a safe and structured way.
+- **Concurrency and persistence:** When implementing multithreading, I ran into race conditions where the resulting JSON file was constantly being overwritten. I learned to manage data writing using [Jackson](https://github.com/FasterXML/jackson), which allowed me to handle the output object in a safe and structured way.
 
-- **Link Cleaning:** I discovered that many of the resources found weren't valid URLs, but relative paths that led nowhere. After checking the documentation, I found the solution was much simpler than I thought: using Jsoup's `absUrl()` method. This small tweak resolved the data integrity issue that had taken me hours of debugging.
+- **Link Cleaning:** I discovered that many of the resources found weren't valid URLs, but relative paths that led nowhere. After checking the documentation, I found the solution was much simpler than I thought: using [Jsoup's](https://jsoup.org/) `absUrl()` method. This small tweak resolved the data integrity issue that had taken me hours of debugging.
 
 ## Optimizing performance: The power of Virtual Threads
 As one might imagine, sequential crawling—downloading code, parsing it, and storing data recursively until the target depth is reached—is an I/O-intensive task. Executing this on a single thread was a critical bottleneck: the process was slow and didn't take advantage of system resources.
 
-To solve this, I integrated Java's Virtual Threads (introduced in recent JVM releases). Although the theory behind concurrency is complex, the reward was immediate:
+To solve this, I integrated Java's Virtual Threads —introduced in recent JVM releases—. Although the theory behind concurrency is complex, the reward was immediate:
 
 - **Sequential results:** 74 - 83 seconds.
 - **Results with Virtual Threads:** ~7 seconds.
 
-This reduction of almost 90% in execution time on my own site ([kattus.dev](https://kattus.dev/), depth 4) perfectly validates the multithreaded architecture I implemented. Additionally, to ensure ethical behavior and avoid being blocked by anti-bot protocols, I added a preventive delay function that simulates a natural waiting time of between 500 and 3000ms between requests.
+This reduction of almost 90% in execution time on my own site (url: https://kattus.dev, depth: 4) perfectly validates the multithreaded architecture I implemented. Additionally, to ensure ethical behavior and avoid being blocked by anti-bot protocols, I added a preventive delay function that simulates a natural waiting time of between 500 and 3000ms between requests.
 
 ## The Horizon of LinkWeaver
 At this point, LinkWeaver has stopped being an experiment and has become a functional crawling and analysis architecture. But this is just the beginning. The search engine I set out to build is still in active development, and my roadmap for the coming months is very clear: moving from simply "collecting" links to making that information truly useful.

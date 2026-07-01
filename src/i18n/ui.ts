@@ -11,16 +11,16 @@ export const ui = {
     'hero.status.available': 'Disponible para trabajar',
     'hero.title.part1': '!Hola! Soy Alex,',
     'hero.title.part2': 'desarrollador de software.',
-    'hero.description': 'Estudiante de DAM con una curiosidad insaciable por la tecnología. Aunque mi foco principal está en el ecosistema Java y Spring Boot, mi objetivo es entender cómo funciona todo: desde el código hasta la infraestructura y la seguridad. Disfruto experimentando con nuevas herramientas, resolviendo problemas y aprendiendo cada día algo nuevo. Estoy en esa etapa de mi carrera donde la prioridad es absorber conocimiento y explorar todas las ramas posibles del desarrollo.',
+    'hero.description': 'Estudiante de DAM con gran curiosidad por la tecnología. Aunque mi foco principal está en el ecosistema Java y Spring Boot, mi objetivo es entender cómo funciona todo: desde el código hasta la infraestructura y la seguridad. Disfruto experimentando con nuevas herramientas, resolviendo problemas y aprendiendo cada día algo nuevo. Estoy en esa etapa de mi carrera donde la prioridad es absorber conocimiento y explorar todas las ramas posibles del desarrollo.',
     'hero.cta.explore': 'Explorar más',
     
     'bento.check.projects': 'Mira estos proyectos',
 
-    'bento.tech.stack.label': 'Technologías',
-    'bento.tech.description.title': "Technologías que puedo usar",
+    'bento.tech.stack.label': 'Tecnologías',
+    'bento.tech.description.title': "Tecnologías que puedo usar",
     'bento.tech.description.content': 'Aunque centrado en el ecosistema Java, soy capaz de manejarme con otras tecnologías.',
     
-    'bento.hello.label': 'Hola!',
+    'bento.hello.label': '!Hola!',
     
     'projects.section.tag': 'Proyectos',
     'projects.section.title.part1': 'Proyectos realizados',
@@ -49,16 +49,6 @@ export const ui = {
 
     'posts.entries.new': 'Nuevo',
     'posts.entries.pinned': 'Fijado',
-    
-    'blog.tech.post1.title': 'Kattus.dev',
-    'blog.tech.post1.alt': 'articulo sobre como hice mi propio portafolio',
-    'blog.tech.post1.date': 'Junio 28, 2026',
-    'blog.tech.post1.description': '¿Cómo hice y que aprendí haciendo mi propio portafolio?',
-
-    'blog.variety.post1.title': 'Template Post',
-    'blog.variety.post1.alt': 'template post',
-    'blog.variety.post1.date': '???',
-    'blog.variety.post1.description': 'Template post description',
 
     'blog.slug.explore.more': 'Descubre más artículos',
     
@@ -96,7 +86,7 @@ export const ui = {
     'hero.status.available': 'Available for work',
     'hero.title.part1': "Hi! I'm Alex,",
     'hero.title.part2': 'a software developer.',
-    'hero.description': "DAM student with an insatiable curiosity for technology. While my main focus is on the Java and Spring Boot ecosystem, my goal is to understand how everything works: from code to infrastructure and security. I enjoy experimenting with new tools, solving problems, and learning something new every day. I'm at that stage in my career where the priority is absorbing knowledge and exploring all possible branches of development.",
+    'hero.description': "DAM student with huge curiosity for technology. While my main focus is on the Java and Spring Boot ecosystem, my goal is to understand how everything works: from code to infrastructure and security. I enjoy experimenting with new tools, solving problems, and learning something new every day. I'm at that stage in my career where the priority is absorbing knowledge and exploring all possible branches of development.",
     'hero.cta.explore': 'Explore more',
     
     'bento.check.projects': 'Check this projects',
@@ -135,16 +125,6 @@ export const ui = {
     
     'posts.entries.new': 'New',
     'posts.entries.pinned': 'Pinned',
-    
-    'blog.tech.post1.title': 'Kattus.dev',
-    'blog.tech.post1.alt': 'post about how I made my own portflio',
-    'blog.tech.post1.date': 'June 28, 2026',
-    'blog.tech.post1.description': 'How I did and what I learned while doing my own porfolio?',
-    
-    'blog.variety.post1.title': 'Template Post',
-    'blog.variety.post1.alt': 'template post',
-    'blog.variety.post1.date': '???',
-    'blog.variety.post1.description': 'Template post description',
 
     'blog.slug.explore.more': 'Explore more articles',
     
