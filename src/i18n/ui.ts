@@ -47,8 +47,8 @@ export const ui = {
     'blog.filter.categories.tech': 'Tecnología',
     'blog.filter.categories.variety': 'Variedad',
 
-    'posts.entries.new': 'New',
-    'posts.entries.pinned': 'Pinned',
+    'posts.entries.new': 'Nuevo',
+    'posts.entries.pinned': 'Fijado',
     
     'blog.tech.post1.title': 'Kattus.dev',
     'blog.tech.post1.alt': 'articulo sobre como hice mi propio portafolio',
