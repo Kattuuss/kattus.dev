@@ -24,9 +24,9 @@ import { Image } from 'astro:assets';
 <!-- Bento Section -->
 <section id="bento" class="auto-rows-fr grid-cols-36 gap-4 flex-col max-lg:grid-cols-6 max-md:flex max-md:gap-4 md:grid">
     <!-- Projects call to action -->
-    <div class="card group rounded-3xl col-start-1 col-end-15 row-start-1 row-end-6 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-3 max-lg:row-end-4">
+    <div class="block group rounded-3xl col-start-1 col-end-15 row-start-1 row-end-6 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-3 max-lg:row-end-4">
         <!-- Check projects call to action -->
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <a href="#projects" class="custom-link flex size-full items-center justify-between rounded-3xl p-6">
                 <p class="discover-more relative font-medium after:absolute after:left-0 after:top-1/2 after:w-0 after:content-[''] after:bg-primary-gradient after:mt-3 after:h-0.5 after:transition-all after:duration-400 group-hover:after:w-full">
                     {t('bento.check.projects')}
@@ -39,8 +39,8 @@ import { Image } from 'astro:assets';
     </div>
     
     <!-- Stack -->
-    <div class="card group rounded-3xl col-start-1 col-end-15 row-start-6 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <div class="block group rounded-3xl col-start-1 col-end-15 row-start-6 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 <!-- Label -->
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -69,8 +69,8 @@ import { Image } from 'astro:assets';
                         </div>
 
                         <!-- Blurs -->
-                        <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-linear-to-r from-(--card-background)"></div>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-linear-to-l from-(--card-background)"></div>
+                        <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-linear-to-r from-(--block-background)"></div>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-linear-to-l from-(--block-background)"></div>
                     </div>
                 </div>
 
@@ -84,8 +84,8 @@ import { Image } from 'astro:assets';
     </div>
 
     <!-- Studies -->
-    <!-- <div class="card group rounded-3xl col-start-15 col-end-37 row-start-6 row-end-20 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <!-- <div class="block group rounded-3xl col-start-15 col-end-37 row-start-6 row-end-20 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 Label
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -100,8 +100,8 @@ import { Image } from 'astro:assets';
     </div> -->
 
     <!-- Experience -->
-    <!-- <div class="card group rounded-3xl col-start-15 col-end-37 row-start-6 row-end-20 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <!-- <div class="block group rounded-3xl col-start-15 col-end-37 row-start-6 row-end-20 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 Label
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -116,8 +116,8 @@ import { Image } from 'astro:assets';
     </div> -->
     
     <!-- Profile CHANGE!!! -->
-    <div class="card group rounded-3xl col-start-15 col-end-30 row-start-1 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <div class="block group rounded-3xl col-start-15 col-end-30 row-start-1 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 <!-- Label -->
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -134,8 +134,8 @@ import { Image } from 'astro:assets';
     </div>
     
     <!-- Decoration 1 CHANGE!!! -->
-    <div class="card group rounded-3xl col-start-1 col-end-15 row-start-25 row-end-37 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <div class="block group rounded-3xl col-start-1 col-end-15 row-start-25 row-end-37 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 <!-- Label -->
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -149,8 +149,8 @@ import { Image } from 'astro:assets';
     </div>
 
     <!-- Decoration 2 CHANGE!!! -->
-    <div class="card group rounded-3xl col-start-15 col-end-37 row-start-25 row-end-37 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <div class="block group rounded-3xl col-start-15 col-end-37 row-start-25 row-end-37 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 <!-- Label -->
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
@@ -164,8 +164,8 @@ import { Image } from 'astro:assets';
     </div>
 
     <!-- Decoration 3 CHANGE!!! -->
-    <div class="card group rounded-3xl col-start-30 col-end-37 row-start-1 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
-        <div class="card-content md:absolute border-[#1f2b3a] max-md:border">
+    <div class="block group rounded-3xl col-start-30 col-end-37 row-start-1 row-end-25 max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-9">
+        <div class="block-content md:absolute border-[#1f2b3a] max-md:border">
             <div class="flex h-full flex-col gap-5 px-5 pb-6 pt-4 max-md:gap-8">
                 <!-- Label -->
                 <div class="z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0 py-2 pl-3 pr-4 w-fit">
