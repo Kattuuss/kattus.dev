@@ -6,7 +6,7 @@ const t = useTranslations(lang);
 ---
         
 <!-- About section -->
-<section class="flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center">
+<section class="animate-fade-in-up flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center">
     <!-- Availability status -->
     <div class="flex w-fit items-center rounded-full gap-3 py-1.5 pl-3 pr-4 border border-zinc-600/75 bg-slate-950/25 enter-animation">
         <div class="relative size-4">
@@ -16,8 +16,7 @@ const t = useTranslations(lang);
         <h3 class="text-lg text-slate-200 max-xs:text-xs">{t('hero.status.available')}</h3>
     </div>
 
-    <!-- Title and description CHANGE!!! -->
-    <h1 class="enter-animation text-[clamp(2rem,7vw,3rem)] font-medium leading-[1.05] tracking-tight">
+    <h1 class="text-[clamp(2rem,7vw,3rem)] font-medium leading-[1.05] tracking-tight">
         {t(`hero.title.part1`)} <br> {t(`hero.title.part2`)}
     </h1>
     <h2 class="enter-animation mb-8 max-w-xl leading-relaxed text-slate-400 max-sm:text-sm">
