@@ -8,6 +8,7 @@ const t = useTranslations(lang);
 import { getCollection } from 'astro:content';
 const allPosts = await getCollection('blog');
 
+// Filter posts by current language and map
 const posts = allPosts
     .filter((post) => post.data.lang === lang)
     .map((post) => ({
@@ -20,20 +21,68 @@ const posts = allPosts
         description: post.data.description,
         technologies: post.data.tags,
         category: post.data.category,
-        status: post.data.status as 'new' | 'pinned' | undefined
+        status: post.data.status as 'new' | 'pin' | 'develop' | undefined
     }));
 
-// More weight = higher on the list
-const statusWeight = { pinned: 1, new: 2, default: 3 };
+// Higher weight = higher priority in the list (lower number = shown first)
+const statusWeight = { pin: 1, new: 2, develop: 3, default: 3 };
 
 const sortedPosts = [...posts].sort((a, b) => {
     const weightA = statusWeight[a.status as keyof typeof statusWeight] || statusWeight.default;
     const weightB = statusWeight[b.status as keyof typeof statusWeight] || statusWeight.default;
-    return weightA - weightB;
+
+    // Sort first by status priority
+    if (weightA !== weightB) {
+        return weightA - weightB;
+    }
+
+    // If status priority is equal, sort by date
+    const dateA = new Date(a.datePublished).getTime();
+    const dateB = new Date(b.datePublished).getTime();
+
+    // Push posts with an invalid date (e.g. 77-77-2077) to the last position
+    const timeA = isNaN(dateA) ? 0 : dateA;
+    const timeB = isNaN(dateB) ? 0 : dateB;
+
+    return timeB - timeA; // Most recent first
 });
 
 const { limit } = Astro.props;
-const displayedPosts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+
+// Posts that will actually be rendered
+// "initialAll" marks which post should be visible by default when the "all" filter is active
+let displayedPosts: (typeof sortedPosts[number] & { initialAll?: boolean })[];
+
+if (limit) {
+    // Its a need to render enough posts so every category filter has something to show,
+    // even if the "limit" posts all belong to one category
+    const categories = [...new Set(sortedPosts.map((p) => p.category))];
+    const includedUrls = new Set<string>();
+
+    displayedPosts = [];
+
+    // Posts shown by default under the "all" filter
+    sortedPosts.slice(0, limit).forEach((p) => {
+        displayedPosts.push({ ...p, initialAll: true });
+        includedUrls.add(p.url);
+    });
+
+    // These posts will stay hidden until their category filter is clicked
+    categories.forEach((cat) => {
+        sortedPosts
+            .filter((p) => p.category === cat)
+            .slice(0, limit)
+            .forEach((p) => {
+                if (!includedUrls.has(p.url)) {
+                    displayedPosts.push({ ...p, initialAll: false });
+                    includedUrls.add(p.url);
+                }
+            });
+    });
+} else {
+    // Full blog listing page without limit, to render every post
+    displayedPosts = sortedPosts;
+}
 
 // Components
 const currentPath = Astro.url.pathname;
@@ -67,12 +116,14 @@ import StatusTag from '../Global/StatusTag.astro';
             </p>
         </div>
 
+        <!-- Util buttons -->
         <div class="w-fit flex flex-col gap-10 justify-center items-end">
             { currentPath === `/${lang}/blog` || currentPath === `/${lang}/blog/` ? 
                 <ReturnBtn msg={t('global.return.button')} /> : 
                 <MoreBtn msg={t('blog.view.more.button')} url={`/${lang}/blog/`} /> 
             }
 
+            <!-- Category filter buttons -->
             <div id="blog-filter" class="flex flex-row justify-center gap-3 max-sm:pt-8">
                 <button data-filter="all" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-[gold] bg-amber-950/30 transition-all duration-300 cursor-pointer text-[gold] font-bold">{t('blog.filter.categories.all')}</button>
                 <button data-filter="tech" class="filter-btn px-5 py-2 flex justify-center items-center gap-3 border rounded-2xl border-zinc-600 transition-all duration-300 hover:bg-amber-950/20 hover:border-[gold] cursor-pointer font-bold">{t('blog.filter.categories.tech')}</button>
@@ -81,11 +132,15 @@ import StatusTag from '../Global/StatusTag.astro';
         </div>
     </div>
 
-    <!-- Article List -->
+    <!-- Article list -->
     <div class="animate-fade-in-up relative mt-12 w-full">
         <!-- Posts -->
-            {displayedPosts.map((post) => (
-                <div class="post-item relative" data-category={post.category}>
+        {displayedPosts.map((post) => (
+            <div class="post-item relative" 
+                data-category={post.category} 
+                data-initial-all={limit ? (post.initialAll ? 'true' : 'false') : undefined} 
+                style={limit && !post.initialAll ? 'display:none' : undefined}
+            >
 
                 {/* Post status tag */}
                 {post.status && (
@@ -108,27 +163,35 @@ import StatusTag from '../Global/StatusTag.astro';
 </section>
 
 <script>
-    const buttons = document.querySelectorAll('.filter-btn');
-    const posts = document.querySelectorAll('.post-item');
+const buttons = document.querySelectorAll('.filter-btn');
+const posts = document.querySelectorAll('.post-item');
 
-    buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            // Reset buttons
-            buttons.forEach((b) => {
-                b.classList.remove('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
-                b.classList.add('border-zinc-600');
-            });
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        // Reset all buttons to the inactive style
+        buttons.forEach((b) => {
+            b.classList.remove('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
+            b.classList.add('border-zinc-600');
+        });
 
-            // Active current
-            btn.classList.add('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
-            btn.classList.remove('border-zinc-600');
+        // Apply the active style to the clicked button
+        btn.classList.add('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
+        btn.classList.remove('border-zinc-600');
 
-            // Filter posts
-            const filter = btn.getAttribute('data-filter');
-            posts.forEach((item) => {
-                const post = item as HTMLElement;
-                post.style.display = (filter === 'all' || post.getAttribute('data-category') === filter) ? 'block' : 'none';
-            });
+        const filter = btn.getAttribute('data-filter');
+
+        posts.forEach((item) => {
+            const post = item as HTMLElement;
+            const category = post.getAttribute('data-category');
+            const isInitialAll = post.getAttribute('data-initial-all') === 'true';
+
+            let visible: boolean;
+
+            if (filter === 'all') { visible = post.hasAttribute('data-initial-all') ? isInitialAll : true; }
+            else { visible = category === filter; }
+
+            post.style.display = visible ? 'block' : 'none';
         });
     });
+});
 </script>

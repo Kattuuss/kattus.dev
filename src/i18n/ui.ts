@@ -48,7 +48,8 @@ export const ui = {
     'blog.filter.categories.variety': 'Variedad',
 
     'posts.entries.new': 'Nuevo',
-    'posts.entries.pinned': 'Fijado',
+    'posts.entries.pin': 'Fijado',
+    'posts.entries.develop': 'En desarrollo',
 
     'blog.slug.explore.more': 'Descubre más artículos',
     
@@ -124,7 +125,8 @@ export const ui = {
     'blog.filter.categories.variety': 'Variety',
     
     'posts.entries.new': 'New',
-    'posts.entries.pinned': 'Pinned',
+    'posts.entries.pin': 'Pinned',
+    'posts.entries.develop': 'On development',
 
     'blog.slug.explore.more': 'Explore more articles',
     

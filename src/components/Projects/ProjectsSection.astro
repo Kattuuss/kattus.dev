@@ -8,6 +8,7 @@ const t = useTranslations(lang);
 import { getCollection } from 'astro:content';
 const allProjects = await getCollection('projects');
 
+// Filter projects by current language and map
 const projects = allProjects
     .filter((project) => project.data.lang === lang)
     .map((project) => ({
@@ -19,28 +20,77 @@ const projects = allProjects
         year: project.data.year,
         name: project.data.name,
         description: project.data.description,
-        status: project.data.status as 'new' | 'pinned' | undefined,
+        status: project.data.status as 'new' | 'pin' | 'develop' | undefined,
         tags: project.data.tags
     }));
 
-// More weight = higher on the list
-const statusWeight = { pinned: 1, new: 2, default: 3 };
+// Higher weight = higher priority in the list (lower number = shown first)
+const statusWeight = { pin: 1, new: 2, develop: 3, default: 3 };
 
 const sortedProjects = [...projects].sort((a, b) => {
     const weightA = statusWeight[a.status as keyof typeof statusWeight] || statusWeight.default;
     const weightB = statusWeight[b.status as keyof typeof statusWeight] || statusWeight.default;
-    return weightA - weightB;
+
+    // Sort first by status priority
+    if (weightA !== weightB) {
+        return weightA - weightB;
+    }
+
+    // If status priority is equal, sort by date
+    const dateA = new Date(a.year).getTime();
+    const dateB = new Date(b.year).getTime();
+
+    // Push projects with an invalid date (e.g. 3022) to the last position
+    const timeA = isNaN(dateA) ? 0 : dateA;
+    const timeB = isNaN(dateB) ? 0 : dateB;
+
+    return timeB - timeA; // Most recent first
 });
 
 const { limit } = Astro.props;
-const displayedProjects = limit ? sortedProjects.slice(0, limit) : sortedProjects;
 
+// Posts that will actually be rendered
+// "initialAll" marks which post should be visible by default when the "all" filter is active
+let displayedProjects: (typeof sortedProjects[number] & { initialAll?: boolean })[];
 
+if (limit) {
+    // Its a need to render enough posts so every category filter has something to show,
+    // even if the "limit" posts all belong to one category
+    const categories = [...new Set(sortedProjects.map((p) => p.category))];
+    const includedUrls = new Set<string>();
+
+    displayedProjects = [];
+
+    // Posts shown by default under the "all" filter
+    sortedProjects.slice(0, limit).forEach((p) => {
+        displayedProjects.push({ ...p, initialAll: true });
+        includedUrls.add(p.url);
+    });
+
+    // These posts will stay hidden until their category filter is clicked
+    categories.forEach((cat) => {
+        sortedProjects
+            .filter((p) => p.category === cat)
+            .slice(0, limit)
+            .forEach((p) => {
+                if (!includedUrls.has(p.url)) {
+                    displayedProjects.push({ ...p, initialAll: false });
+                    includedUrls.add(p.url);
+                }
+            });
+    });
+} else {
+    // Full blog listing page without limit, to render every post
+    displayedProjects = sortedProjects;
+}
+
+// Components
 const currentPath = Astro.url.pathname;
 import MoreBtn from "../Global/MoreBtn.astro";
 import ReturnBtn from "../Global/ReturnBtn.astro";
 import ProjectCard from "./ProjectCard.astro";
 import StatusTag from '../Global/StatusTag.astro';
+import { promise } from 'astro:schema';
 ---
 
 <!-- Projects Section -->
@@ -56,7 +106,7 @@ import StatusTag from '../Global/StatusTag.astro';
                 <h2 class="text-sm font-medium tracking-wide max-sm:text-xs">{t('projects.section.tag')}</h2>
             </div>
 
-            <!-- Section intro CHANGE!!! -->
+            <!-- Section intro -->
             <h3 class="font-heading font-semibold leading-none text-[clamp(2rem,7vw,3rem)]">
                 {t('projects.section.title.part1')}
                 <br>
@@ -69,17 +119,23 @@ import StatusTag from '../Global/StatusTag.astro';
             </p>
         </div>
 
+        <!-- Util buttons (could add BlogSection filters with a copy-paste here) -->
         { currentPath === `/${lang}/projects` || currentPath === `/${lang}/projects/` ? 
             <ReturnBtn msg={t('global.return.button')} /> : 
             <MoreBtn msg={t('projects.view.more.button')} url={`/${lang}/projects/`} /> 
         }
     </div>
 
-    <!-- Higlighted projects -->
+    <!-- Projects list -->
     <div class="animate-fade-in-up mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Posts -->
+        <!-- Projects -->
         {displayedProjects.map((project) => (
-            <div class="post-item relative" data-category={project.category}>
+            <div class="post-item relative" 
+                data-category={project.category} 
+                data-initial-all={limit ? (project.initialAll ? 'true' : 'false') : undefined} 
+                style={limit && !project.initialAll ? 'display:none' : undefined}
+            >
+
                 {/* Project status tag */}
                 {project.status && (
                     <StatusTag status={project.status} vert_pos="-top-5" />
@@ -99,3 +155,37 @@ import StatusTag from '../Global/StatusTag.astro';
         ))}
     </div>
 </section>
+
+<script>
+const buttons = document.querySelectorAll('.filter-btn');
+const posts = document.querySelectorAll('.post-item');
+
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        // Reset all buttons to the inactive style
+        buttons.forEach((b) => {
+            b.classList.remove('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
+            b.classList.add('border-zinc-600');
+        });
+
+        // Apply the active style to the clicked button
+        btn.classList.add('bg-amber-950/30', 'border-amber-400', 'text-[gold]');
+        btn.classList.remove('border-zinc-600');
+
+        const filter = btn.getAttribute('data-filter');
+
+        posts.forEach((item) => {
+            const post = item as HTMLElement;
+            const category = post.getAttribute('data-category');
+            const isInitialAll = post.getAttribute('data-initial-all') === 'true';
+
+            let visible: boolean;
+
+            if (filter === 'all') { visible = post.hasAttribute('data-initial-all') ? isInitialAll : true; }
+            else { visible = category === filter; }
+
+            post.style.display = visible ? 'block' : 'none';
+        });
+    });
+});
+</script>
