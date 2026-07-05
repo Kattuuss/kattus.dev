@@ -126,7 +126,7 @@ export const ui = {
     
     'posts.entries.new': 'New',
     'posts.entries.pin': 'Pinned',
-    'posts.entries.develop': 'On development',
+    'posts.entries.develop': 'Under development',
 
     'blog.slug.explore.more': 'Explore more articles',
     

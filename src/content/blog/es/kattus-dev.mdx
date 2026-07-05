@@ -5,7 +5,7 @@ status: pin
 category: tech
 title: ¿Cómo hice mi propio portafolio?
 alt: post hablando sobre como hice mi propio portfolio
-description: Todo lo que aprendí durante la creación de mi propio portafolio?
+description: Todo lo que aprendí durante la creación de mi propio portafolio
 banner: /src/assets/blog/kattus-dev/kattus.dev.png
 pubDate: "Junio 28, 2026"
 readTime: "6 min"
@@ -32,10 +32,10 @@ Al desconocer aspectos fundamentales de la experiencia de usuario —como la imp
 
 <figure class="text-center">
 
-  ![FirstDesignWelcome](../../../assets/blog/kattus-dev/designs/firstDesignWelcome.jpg)
+  ![First design welcome pages](../../../assets/blog/kattus-dev/designs/firstDesignWelcome.jpg)
   <figcaption class="-mt-5">Figura 1: Página de bienvenida</figcaption>
 
-  ![FirstDesignContent](../../../assets/blog/kattus-dev/designs/firstDesignContent.jpg)
+  ![First design content pages](../../../assets/blog/kattus-dev/designs/firstDesignContent.jpg)
   <figcaption class="-mt-5">Figura 2: Conceptos de las páginas iniciales</figcaption>
 
 </figure>
@@ -49,10 +49,10 @@ Pensé: "Si uso esta configuración todos los días y me encanta, ¿por qué no 
 
 <figure class="text-center">
 
-  ![KaelestiaMixedConcepts](../../../assets/blog/kattus-dev/designs/secondDesignMix.jpg)
+  ![Kaelestia mixed concepts](../../../assets/blog/kattus-dev/designs/secondDesignMix.jpg)
   <figcaption class="-mt-5">Figura 3: Conceptos para el diseño Caelestia</figcaption>
 
-  ![KaelestiaContent](../../../assets/blog/kattus-dev/designs/kaelestiaMix.jpg)
+  ![Kaelestia content](../../../assets/blog/kattus-dev/designs/kaelestiaMix.jpg)
   <figcaption class="-mt-5">Figura 4: Más conceptos para el diseño Caelestia</figcaption>
 
 </figure>
@@ -60,7 +60,7 @@ Pensé: "Si uso esta configuración todos los días y me encanta, ¿por qué no 
 <Callout type="faq" title="¿Este diseño pertenece a caelestia?">
   <p class="text-white!">
     Sí, aunque se eliminó lo más caracterítico del diseño, la barra lateral, durante estos bocetos experimenté con difrentes formas de sustituirla y por rápidez para hacer más bocetos —ya que todos no los incluyo en este post—, no dibujé la ventana, solo el contenido.
-    </p>
+  </p>
 </Callout>
 
 ## La filosofía *mobile-first*
@@ -70,7 +70,7 @@ Cuando implementé por primera vez mi diseño basado en Caelestia en una pantall
 
 <figure class="text-center">
 
-  ![KaelestiaDesign](../../../assets/blog/kattus-dev/designs/kaelestiaLayout.jpg)
+  ![Kaelestia design](../../../assets/blog/kattus-dev/designs/kaelestiaLayout.jpg)
   <figcaption class="-mt-5">Figura 5: Diseño Caelestia, versión móvil</figcaption>
 
 </figure>
@@ -85,7 +85,7 @@ Mi idea era que la página se compusiera íntegramente por un diseño tipo Bento
 
 <figure class="text-center">
 
-  ![BentoInteractiveDesign](../../../assets/blog/kattus-dev/designs/kaelestiaBento.jpg)
+  ![Bento interactive design](../../../assets/blog/kattus-dev/designs/kaelestiaBento.jpg)
   <figcaption class="-mt-5">Figura 6: Interactividad del diseño Bento</figcaption>
 
 </figure>
@@ -96,7 +96,7 @@ Mi idea era que la página se compusiera íntegramente por un diseño tipo Bento
 
 <figure class="text-center">
 
-  ![BentoInsideDesign](../../../assets/blog/kattus-dev/designs/bentoDesign.jpg)
+  ![Bento block expanded design](../../../assets/blog/kattus-dev/designs/bentoDesign.jpg)
   <figcaption class="-mt-5">Figura 7: Dentro de los bloques Bento</figcaption>
 
 </figure>
@@ -113,21 +113,47 @@ Una vez superada la fase técnica, solo quedaba lo que pensé que sería "la par
 
 Ahora bien, no es una herramienta exenta de curva de aprendizaje. No sé si por su extenso abanico de opciones de personalización o por la complejidad natural de maquetar elementos responsive que mantengan una armonía estética, Tailwind no es precisamente trivial. No hablamos de una dificultad al nivel de lenguajes de bajo nivel, ni mucho menos, pero sí de una herramienta tan flexible y densa que la sensación de "dominarla" solo llega después de muchas horas de ensayo y error, jugando con cada combinación posible.
 
-## La esencia Astro: Colecciones de contenido y rutas dinámicas
-[Astro](https://astro.build/) ha sido el pilar fundamental de este proyecto. Aunque nació como un framework optimizado para sitios estáticos, su evolución ha sido digna de estudio. Hoy en día, mediante su arquitectura de "islas", permite inyectar dinamismo solo donde realmente es necesario. Su mayor baza es, sin duda, su filosofía *"zero-JS"*: por defecto, Astro envía cero líneas de JavaScript al navegador, lo que garantiza un rendimiento excepcional desde el primer segundo.
+## La esencia Astro
+### Estructura y componentes
+[Astro](https://astro.build/) ha sido el pilar fundamental de este proyecto. Aunque nació como un *framework* optimizado para sitios estáticos, su evolución ha sido digna de estudio. Hoy en día, mediante su arquitectura de "islas", permite inyectar dinamismo —usando componentes de otros *frameworks* como React, Vue o Svelte— solo donde es estrictamente necesario. Su mayor baza es, sin duda, su filosofía *"zero-JS"*: por defecto, Astro envía cero líneas de JavaScript al navegador, lo que garantiza un rendimiento excepcional desde el primer segundo.
 
-Más allá de la velocidad, lo que realmente me cautivó fue cómo maneja el contenido. Al trabajar de forma nativa con [Markdown](https://daringfireball.net/projects/markdown/) —y en mi caso, con [MDX](https://mdxjs.com/)—, la experiencia de redacción es impecable. Para un portafolio donde los posts de proyectos y el blog son piezas clave, las Content Collections de Astro han sido un salvavidas: me han permitido validar mi contenido con Zod y estructurar todo de forma tipada, evitando errores comunes y facilitando el mantenimiento a largo plazo.
+Cuando inicias un proyecto en Astro mediante su asistente, se te da la opción de comenzar con una estructura predefinida. Esta es la forma en la que se organiza un proyecto estándar:
 
 <figure class="text-center">
 
-  ![AstroFlow](../../../assets/blog/kattus-dev/astroFlow.png)
-  <figcaption class="-mt-5">Figura 8: Estructura Astro</figcaption>
+  ![Astro structure](../../../assets/blog/kattus-dev/astroStructure.png)
+  <figcaption class="-mt-5">Figura 8: Estructura de directorios en Astro</figcaption>
 
 </figure>
 
-Además, la experiencia de desarrollo es sobresaliente. Poder gestionar dependencias directamente desde la terminal con su propio comando es una comodidad indescriptible, y su capacidad de optimización es digna de mención; por ejemplo, el componente `<Image/>` es capaz de transformar automáticamente archivos PNG o JPG, entre otros a formatos más modernos como WebP, reduciendo drásticamente el peso sin que tenga que preocuparme por procesos manuales complejos.
+- **[Public](https://docs.astro.build/en/guides/images/#where-to-store-images):** Archivos estáticos que no requieren procesamiento ni transformación.
+- **[Assets / Images](https://docs.astro.build/en/guides/images/#where-to-store-images):** A diferencia de `public`, estos archivos son optimizados y transformados automáticamente para reducir su peso y mejorar la velocidad de carga.
+- **[Components](https://docs.astro.build/en/basics/astro-components/):** Archivos `.astro` que actúan como plantillas reutilizables, evitando la repetición de código. Aunque, permiten integrar [componentes de otros *frameworks*](https://docs.astro.build/en/guides/framework-components/).
+- **[Layouts](https://docs.astro.build/en/basics/layouts/):** Plantillas de alto nivel que definen la estructura general de las páginas, permitiendo envolver el contenido en una interfaz común.
+- **[Pages](https://docs.astro.build/en/basics/astro-pages/):** El corazón del enrutamiento del proyecto. Aquí se gestionan las rutas, la carga de datos y la aplicación de *layouts*.
+- **[Styles](https://docs.astro.build/en/guides/styling/):** Directorio donde se almacenan los archivos destinados a la personalización estética global o modular.
+- **[Content](https://docs.astro.build/en/guides/content-collections/):** Espacio dedicado a archivos `.md` o `.mdx`, diseñados para ser renderizados directamente como contenido HTML.
 
-Esta misma página es un ejemplo: lo que estás leyendo reside en un archivo MDX, procesado de forma eficiente para que la carga sea instantánea. Gracias a todo esto, considero que Astro no es solo una opción excelente, sino probablemente el estándar de oro actual para desarrollar cualquier sitio donde la velocidad y la experiencia de usuario sean la prioridad.
+### Colecciones de contenido y rutas dinámicas
+Más allá de la velocidad, lo que realmente me cautivó fue cómo maneja el contenido. Al trabajar de forma nativa con [Markdown](https://daringfireball.net/projects/markdown/) —y en mi caso, con [MDX](https://mdxjs.com/)—, la experiencia de redacción es impecable. Para un portafolio donde los posts son piezas clave, las *Content Collections* de Astro han sido un salvavidas: me han permitido validar mi contenido mediante [Zod](https://docs.astro.build/en/reference/modules/astro-zod/) y estructurar todo de forma tipada, evitando errores comunes y facilitando el mantenimiento a largo plazo.
+
+<figure class="text-center">
+
+  ![Astro flow](../../../assets/blog/kattus-dev/astroFlow.png)
+  <figcaption class="-mt-5">Figura 9: Flujo de procesamiento de contenido en Astro</figcaption>
+
+</figure>
+
+La experiencia de desarrollo es sobresaliente. La gestión de dependencias es cómoda y su capacidad de optimización es digna de mención; por ejemplo, el componente `<Image/>` transforma automáticamente archivos PNG o JPG a formatos más modernos como WebP, reduciendo drásticamente el peso sin que tenga que realizar procesos manuales. Esta misma página es un ejemplo: lo que estás leyendo reside en un archivo MDX, procesado de forma eficiente para garantizar una carga instantánea.
+
+### Internacionalización (i18n)
+Este apartado supuso un reto para hacer la página accesible a otros idiomas además del español. Al principio pensé que la traducción se realizaría mediante una API externa, pero descubrí que Astro aborda la internacionalización de una manera mucho más integrada mediante tres pilares:
+
+- **Carpeta `i18n`:** Contiene `ui.ts` (un diccionario con frases y palabras comunes) y `utils.ts` (funciones auxiliares para la lógica de traducción).
+- **`astro.config.mjs`:** Define los idiomas disponibles y cómo deben ser gestionados en el enrutamiento.
+- **`/pages/{lang}/`:** El sistema de enrutamiento basado en carpetas, donde cada subdirectorio de lenguaje (`/es/`, `/en/`) sirve como contenedor de las páginas traducidas.
+
+Sin embargo, no todo es sencillo: la parte más laboriosa es la redacción de los artículos. Al haber optado por una implementación manual, sin recurrir a APIs externas o sistemas de traducción automática, me veo obligado a escribir cada post por duplicado —una vez por cada idioma—. Esto implica no solo traducir el contenido, sino también gestionar individualmente el *frontmatter* de cada versión. Un proceso tedioso pero necesario para mantener el control total sobre la calidad y el tono de mi mensaje en ambos idiomas.
 
 ## ¿Y ahora qué?
 Ahora que mi portafolio es plenamente funcional y cuenta con la estética que buscaba, finalmente puedo volver a aquello que lo inició todo: el desarrollo de [MuuMe](https://kattus.dev/es/projects/muume). Lo hago con la tranquilidad de saber que mis proyectos no solo serán robustos a nivel lógico, sino que ahora también ofrecerán una experiencia visual cuidada y agradable para el usuario.

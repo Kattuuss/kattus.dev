@@ -32,10 +32,10 @@ Unaware of fundamental aspects of user experience —such as the importance of n
 
 <figure class="text-center">
 
-  ![FirstDesignWelcome](../../../assets/blog/kattus-dev/designs/firstDesignWelcome.jpg)
+  ![First design welcome pages](../../../assets/blog/kattus-dev/designs/firstDesignWelcome.jpg)
   <figcaption class="-mt-5">Figure 1: Welcome page</figcaption>
 
-  ![FirstDesignContent](../../../assets/blog/kattus-dev/designs/firstDesignContent.jpg)
+  ![First design content pages](../../../assets/blog/kattus-dev/designs/firstDesignContent.jpg)
   <figcaption class="-mt-5">Figure 2: Initial pages concepts</figcaption>
 
 </figure>
@@ -49,10 +49,10 @@ I thought: "If I use this configuration every day and love it, why not bring it 
 
 <figure class="text-center">
 
-  ![KaelestiaMixedConcepts](../../../assets/blog/kattus-dev/designs/secondDesignMix.jpg)
+  ![Kaelestia mixed concepts](../../../assets/blog/kattus-dev/designs/secondDesignMix.jpg)
   <figcaption class="-mt-5">Figure 3: Caelestia design concepts</figcaption>
 
-  ![KaelestiaContent](../../../assets/blog/kattus-dev/designs/kaelestiaMix.jpg)
+  ![Kaelestia content](../../../assets/blog/kattus-dev/designs/kaelestiaMix.jpg)
   <figcaption class="-mt-5">Figure 4: More Caelestia design concepts</figcaption>
 
 </figure>
@@ -60,7 +60,7 @@ I thought: "If I use this configuration every day and love it, why not bring it 
 <Callout type="faq" title="Does this design belong to Caelestia?">
   <p class="text-white!">
     Yes, although the most characteristic part of the design —the sidebar— was removed. During these sketches, I experimented with different ways to replace it, and for the sake of speed in creating more sketches —since I'm not including all of them in this post—, I didn't draw the window, only the content.
-    </p>
+  </p>
 </Callout>
 
 ## The *mobile-first* philosophy
@@ -70,7 +70,7 @@ When I first implemented my Caelestia-based design on a mobile screen, the resul
 
 <figure class="text-center">
 
-  ![KaelestiaDesign](../../../assets/blog/kattus-dev/designs/kaelestiaLayout.jpg)
+  ![Kaelestia design](../../../assets/blog/kattus-dev/designs/kaelestiaLayout.jpg)
   <figcaption class="-mt-5">Figure 5: Caelestia design, mobile version</figcaption>
 
 </figure>
@@ -84,7 +84,7 @@ My idea was for the page to be composed entirely of a Bento-style design. Upon i
 
 <figure class="text-center">
 
-  ![BentoInteractiveDesign](../../../assets/blog/kattus-dev/designs/kaelestiaBento.jpg)
+  ![Bento interactive design](../../../assets/blog/kattus-dev/designs/kaelestiaBento.jpg)
   <figcaption class="-mt-5">Figure 6: Bento layout interactivity</figcaption>
 
 </figure>
@@ -95,7 +95,7 @@ My idea was for the page to be composed entirely of a Bento-style design. Upon i
 
 <figure class="text-center">
 
-  ![BentoInsideDesign](../../../assets/blog/kattus-dev/designs/bentoDesign.jpg)
+  ![Bento block expanded design](../../../assets/blog/kattus-dev/designs/bentoDesign.jpg)
   <figcaption class="-mt-5">Figure 7: Inside the Bento blocks</figcaption>
 
 </figure>
@@ -112,21 +112,47 @@ Once the technical phase was overcome, all that remained was what I thought woul
 
 However, it is not a tool without a learning curve. I don't know if it's because of its vast range of customization options or the natural complexity of laying out responsive elements that maintain aesthetic harmony, but Tailwind is not exactly trivial. We aren't talking about difficulty on the level of low-level languages, by any means, but it is a tool so flexible and dense that the feeling of "mastering" it only comes after many hours of trial and error, playing with every possible combination.
 
-## The Astro essence: Content Collections and dynamic routes
-[Astro](https://astro.build/) has been the fundamental pillar of this project. Although it was born as a framework optimized for static sites, its evolution has been worthy of study. Today, through its "islands" architecture, it allows injecting dynamism only where it is really necessary. Its greatest asset is, without a doubt, its *"zero-JS"* philosophy: by default, Astro sends zero lines of JavaScript to the browser, which guarantees exceptional performance from the first second.
+## The Astro Essence
+### Structure and Components
+[Astro](https://astro.build/) has been the cornerstone of this project. Although it started as a framework optimized for static sites, its evolution has been remarkable. Today, through its "islands" architecture, it allows for the injection of dynamism—using components from other frameworks like React, Vue, or Svelte—only where it is strictly necessary. Its greatest strength is, without a doubt, its "zero-JS" philosophy: by default, Astro ships zero lines of JavaScript to the browser, which guarantees exceptional performance from the very first second.
 
-Beyond speed, what really captivated me was how it handles content. By working natively with [Markdown](https://daringfireball.net/projects/markdown/) —and in my case, with [MDX](https://mdxjs.com/)—, the writing experience is impeccable. For a portfolio where project posts and the blog are key pieces, Astro's *Content Collections* have been a lifesaver: they have allowed me to validate my content with *Zod* and structure everything in a typed way, avoiding common errors and facilitating long-term maintenance.
+When you start an Astro project using their CLI wizard, you are given the option to begin with a predefined structure. This is how a standard project is organized:
 
 <figure class="text-center">
 
-  ![AstroFlow](../../../assets/blog/kattus-dev/astroFlow.png)
-  <figcaption class="-mt-5">Figure 8: Astro structure</figcaption>
+  ![Astro structure](../../../assets/blog/kattus-dev/astroStructure.png)
+  <figcaption class="-mt-5">Figure 8: Astro directory structure</figcaption>
 
 </figure>
 
-Furthermore, the development experience is outstanding. Being able to manage dependencies directly from the terminal with its own command is an indescribable convenience, and its optimization capability is worth mentioning; for example, the `<Image/>` component is capable of automatically transforming PNG or JPG files, among others, to more modern formats like WebP, drastically reducing the weight without me having to worry about complex manual processes.
+- **[Public](https://docs.astro.build/en/guides/images/#where-to-store-images):** Static files that do not require processing or transformation.
+- **[Assets / Images](https://docs.astro.build/en/guides/images/#where-to-store-images):** Unlike `public`, these files are automatically optimized and transformed to reduce their size and improve loading speed.
+- **[Components](https://docs.astro.build/en/basics/astro-components/):** `.astro` files that act as reusable templates, preventing code duplication. Additionally, they allow for the integration of [components from other frameworks](https://docs.astro.build/en/guides/framework-components/).
+- **[Layouts](https://docs.astro.build/en/basics/layouts/):** High-level templates that define the general structure of pages, allowing content to be wrapped in a common interface.
+- **[Pages](https://docs.astro.build/en/basics/astro-pages/):** The heart of the project's routing; this is where routes, data loading, and the application of layouts are managed.
+- **[Styles](https://docs.astro.build/en/guides/styling/):** The directory where files intended for global or modular aesthetic customization are stored.
+- **[Content](https://docs.astro.build/en/guides/content-collections/):** A space dedicated to `.md` or `.mdx` files, designed to be rendered directly as HTML content.
 
-This same page is an example: what you are reading resides in an MDX file, processed efficiently so that loading is instantaneous. Thanks to all this, I consider Astro not only an excellent option but probably the current gold standard for developing any site where speed and user experience are the priority.
+### Content Collections and Dynamic Routes
+Beyond speed, what really captivated me was how it handles content. By working natively with [Markdown](https://daringfireball.net/projects/markdown/)—and in my case, with [MDX](https://mdxjs.com/)—the writing experience is seamless. For a portfolio where blog posts are key, Astro's *Content Collections* have been a lifesaver: they have allowed me to validate my content using [Zod](https://docs.astro.build/en/reference/modules/astro-zod/) and keep everything type-safe, preventing common errors and facilitating long-term maintenance.
+
+<figure class="text-center">
+
+  ![Astro flow](../../../assets/blog/kattus-dev/astroFlow.png)
+  <figcaption class="-mt-5">Figure 9: Astro content processing flow</figcaption>
+
+</figure>
+
+The development experience is outstanding. Dependency management is convenient, and its optimization capabilities are worth mentioning; for instance, the `<Image/>` component automatically transforms PNG or JPG files into more modern formats like WebP, drastically reducing weight without me having to perform manual processes. This very page is an example: what you are reading resides in an MDX file, processed efficiently to ensure instantaneous loading.
+
+### Internationalization (i18n)
+This section presented a challenge to make the page accessible in languages other than Spanish, which was the original language. At first, I thought the translation would be done via an external API, but I discovered that Astro handles internationalization in a much more integrated way through three pillars:
+
+- **`i18n` folder:** Contains `ui.ts` (a dictionary with common phrases and words) and `utils.ts` (helper functions for translation logic).
+- **`astro.config.mjs`:** Defines the available languages and how they should be handled in routing.
+- **`/pages/{lang}/`:** A folder-based routing system, where each language subdirectory (`/es/`, `/en/`) serves as a container for the translated pages.
+
+However, it’s not all straightforward: the most laborious part is writing the articles. By opting for a manual implementation, without relying on external APIs or automated translation systems, I am forced to write each post twice—once for each language. This involves not only translating the content but also managing the *frontmatter* for each version individually. A tedious but necessary process to maintain full control over the quality and tone of my message in both languages.
 
 ## What now?
 Now that my portfolio is fully functional and has the aesthetic I was looking for, I can finally return to what started it all: the development of [MuuMe](https://kattus.dev/es/projects/muume). I do so with the peace of mind of knowing that my projects will not only be robust at a logical level, but that they will now also offer a polished and pleasant user experience.

@@ -104,7 +104,7 @@ const { tags } = post.data;
                                 .filter(h => h.depth <= 4)
                                 .map(heading => (
                                     <li>
-                                        <a class="custom-link hover:text-zinc-400 transition-colors" href={`#${heading.slug}`}>
+                                        <a class="aside-links hover:text-zinc-400 transition-colors" href={`#${heading.slug}`}>
                                             {heading.text}
                                         </a>
                                     </li>

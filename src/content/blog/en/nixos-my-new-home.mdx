@@ -8,8 +8,8 @@ alt: post talking about why and how I'm switching to NixOS
 description: My transition to NixOS, my new daily drive distro
 banner: /src/assets/blog/switching-to-nixos/nix-logo-simple-light-gray.png
 # banner: /src/assets/blog/switching-to-nixos/nix-logo-dark-neon.png
-pubDate: "2 July, 2026"
-readTime: "? min"
+pubDate: "5 July, 2026"
+readTime: "2 min"
 tags:
   - linux
   - nixos
@@ -17,5 +17,17 @@ tags:
 
 import Callout from '../../../components/Content/Callout.astro';
 
-## SOON!
-Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon!
+<Callout type="info" title="Article currently in development">
+  <p class="text-white!">
+    This article will be developed through updates as I continue my journey with NixOS. I will document my discoveries, critiques, and experiences. As long as this post carries the "Under development" label, the content will continue to be updated.
+  </p>
+</Callout>
+
+## Why am I switching to NixOS?
+The main reason is stability. NixOS is renowned for its reliability, among many other things. This is possible thanks to its unique paradigm for managing packages and dependencies—an approach I will delve deeper into as I gain more experience with the system.
+
+This model differs drastically from my current distribution, Arch Linux. Arch is characterized as a "bleeding edge" distribution, which means that the vast majority of packages are always at their most recent version. While this is exciting for staying on the cutting edge, it carries a risk: a poorly tested update can introduce regressions that compromise system stability, forcing you to spend hours fixing it or, in the worst-case scenario, reinstalling everything from scratch.
+
+So, the question remains: why make the switch? This September, I am starting a new phase of my formal studies, and I need a robust work environment. I cannot afford for an unexpected update to interrupt my workflow or force me to spend time on critical maintenance tasks right before an exam. Although I have always kept Windows as a backup system—and it will likely stay there for a while longer—I do not want to abandon Linux, since I feel very comfortable in this environment. For this reason, I looked for a more predictable and resilient alternative, and NixOS—which I had been keeping an eye on for a while—positioned itself as the ideal choice.
+
+## Act 1: Installation and configuration

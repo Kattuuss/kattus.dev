@@ -4,12 +4,12 @@ permalink: nixos-my-new-home
 status: develop
 category: tech
 title: "NixOS: Mi nueva distribución de uso diario"
-alt: post hablando sobre por qué y como me he pasado a NixOs
+alt: artículo hablando sobre por qué y como me he pasado a NixOs
 description: Mi transición a NixOS, mi nueva distribución de uso diario
 banner: /src/assets/blog/switching-to-nixos/nix-logo-simple-light-gray.png
 # banner: /src/assets/blog/switching-to-nixos/nix-logo-dark-neon.png
-pubDate: "2 Julio, 2026"
-readTime: "? min"
+pubDate: "5 Julio, 2026"
+readTime: "2 min"
 tags:
   - linux
   - nixos
@@ -17,5 +17,17 @@ tags:
 
 import Callout from '../../../components/Content/Callout.astro';
 
-## SOON!
-Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon! Soon!
+<Callout type="info" title="Desarrollo planteado para este articulo">
+  <p class="text-white!">
+    Este artículo se irá desarrollando mediante actualizaciones, es decir, a medida que avance en mi uso de NixOS, iré documentando descubrimientos, críticas y experiencias. Mientras mantenga la etiqueta "En desarrollo", el contenido seguirá siendo actualizado.
+  </p>
+</Callout>
+
+## ¿Por qué me paso a NixOS?
+El principal motivo es la estabilidad. NixOS es reconocido, entre otras muchas cosas, por su fiabilidad. Esto es posible gracias a su paradigma único de gestión de paquetes y dependencias, un enfoque del que profundizaré conforme avance mi experiencia con el sistema. 
+
+Este modelo difiere drásticamente de mi distribución actual, Arch Linux. Arch se caracteriza por ser una distribución *bleeding edge*, lo que se traduce en que la gran mayoría de los paquetes están siempre en su versión más reciente. Si bien esto es emocionante para estar a la vanguardia, conlleva un riesgo: una actualización mal probada puede introducir regresiones que comprometan la estabilidad del sistema, obligándote a dedicar horas a repararlo o, en el peor de los casos, a reinstalarlo todo.
+
+La pregunta sigue sin resolverse: ¿por qué el cambio? En septiembre inicio una nueva etapa de mis estudios oficiales y necesito un entorno de trabajo robusto. No puedo permitirme que una actualización inesperada interrumpa mi flujo de trabajo o me obligue a dedicar tiempo a tareas de mantenimiento crítico justo antes de un examen. Aunque siempre he mantenido Windows como sistema de emergencia —y probablemente siga ahí por un tiempo—, no quiero abandonar Linux, ya que me siento muy cómodo en este entorno. Por esta razón, busqué una alternativa más predecible y resiliente, y NixOS —al que llevaba tiempo siguiendo la pista— se posicionó como la opción ideal.
+
+## Acto 1: Instalación y configuración

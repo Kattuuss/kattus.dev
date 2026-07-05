@@ -216,12 +216,6 @@ svg[data-astro-cid-socials] {
     transition: .3s ease-out
 }
 
-.discover-more:hover:after,
-.discover-more:active:after,
-.discover-more.isDown:after {
-    width: 70%;
-}
-
 .discover-more:active,
 .discover-more.isDown {
     background: linear-gradient(90deg, gold 5%, darkorchid 95%);
@@ -244,6 +238,25 @@ svg[data-astro-cid-socials] {
 }
 
 .custom-link:hover svg, .custom-link:focus svg{
+    color: darkorchid;
+}
+
+/* ----- Aside links ----- */
+.aside-links:hover, .aside-links:focus {
+    background: linear-gradient(90deg, gold 50%, darkorchid 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.aside-links:hover, .aside-links:focus {
+    background: linear-gradient(90deg, gold 5%, darkorchid 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.aside-links:hover svg, .aside-links:focus svg{
     color: darkorchid;
 }
 
