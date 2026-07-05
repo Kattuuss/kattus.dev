@@ -21,11 +21,11 @@ const posts = allPosts
         description: post.data.description,
         technologies: post.data.tags,
         category: post.data.category,
-        status: post.data.status as 'new' | 'pin' | 'develop' | undefined
+        status: post.data.status as 'new' | 'pin' | 'rework' |'develop' | undefined
     }));
 
 // Higher weight = higher priority in the list (lower number = shown first)
-const statusWeight = { pin: 1, new: 2, develop: 3, default: 3 };
+const statusWeight = { pin: 1, new: 2, rework: 2, develop: 3, default: 3 };
 
 const sortedPosts = [...posts].sort((a, b) => {
     const weightA = statusWeight[a.status as keyof typeof statusWeight] || statusWeight.default;

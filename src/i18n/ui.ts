@@ -49,6 +49,7 @@ export const ui = {
 
     'posts.entries.new': 'Nuevo',
     'posts.entries.pin': 'Fijado',
+    'posts.entries.rework': 'Reconstruido',
     'posts.entries.develop': 'En desarrollo',
 
     'blog.slug.explore.more': 'Descubre más artículos',
@@ -126,6 +127,7 @@ export const ui = {
     
     'posts.entries.new': 'New',
     'posts.entries.pin': 'Pinned',
+    'posts.entries.rework': 'Reworked',
     'posts.entries.develop': 'Under development',
 
     'blog.slug.explore.more': 'Explore more articles',
