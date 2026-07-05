@@ -117,7 +117,7 @@ import StatusTag from '../Global/StatusTag.astro';
         </div>
 
         <!-- Util buttons -->
-        <div class="w-fit flex flex-col gap-10 justify-center items-end">
+        <div class="w-fit max-sm:w-full flex flex-col gap-10 justify-center items-center">
             { currentPath === `/${lang}/blog` || currentPath === `/${lang}/blog/` ? 
                 <ReturnBtn msg={t('global.return.button')} /> : 
                 <MoreBtn msg={t('blog.view.more.button')} url={`/${lang}/blog/`} /> 
